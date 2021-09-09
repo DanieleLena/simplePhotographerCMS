@@ -38,7 +38,7 @@ const SignInForm = ({ loginSuccess}) => {
     }
     const handleSubmit =  async (e) => {
         e.preventDefault();
-        
+
         try {
           const {data} = await axios.post("/auth/login",logIn);
           localStorage.setItem(
@@ -58,12 +58,7 @@ const SignInForm = ({ loginSuccess}) => {
     }
 
 
-    // useEffect(() => {
-    //   localStorage.setItem(
-    //     "user",
-    //     JSON.stringify({ name: 'DANIELE', token:'PROVAATOKEN222' })
-    //   );
-    // }, [])
+
     return (
       <section className="login-section">
         <form className="login-form" onSubmit={handleSubmit}>
@@ -75,7 +70,7 @@ const SignInForm = ({ loginSuccess}) => {
             id="email"
             name="email"
             value={logIn.email}
-            onChange={formOnChange }
+            onChange={formOnChange}
             required
           ></input>
           <label htmlFor="password">password:</label>
@@ -88,7 +83,9 @@ const SignInForm = ({ loginSuccess}) => {
             required
           ></input>
           {error && <h2>Password or email incorretc</h2>}
-          <button type="submit">Log In</button>
+          <button className="custom-btn btn-2" type="submit">
+            <span>Log In</span>
+          </button>
         </form>
       </section>
     );

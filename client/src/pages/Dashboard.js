@@ -1,32 +1,32 @@
-import React, { useEffect } from 'react'
-import { LOGOUT } from '../actions'
+import React, { useEffect } from "react";
+import { LOGOUT } from "../actions";
 import { connect } from "react-redux";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
+import { AvatarPicker } from "../components";
 
-const Dashboard = ({isLogIn,logout}) => {
+const Dashboard = ({ isLogIn, logout }) => {
+  const history = useHistory();
 
-    const history = useHistory();
+  const handleLogout = () => {
+    logout();
+    history.push("/login");
+  };
 
-const handleLogout = () => {
-logout();
-history.push('/login');
-}
-//     useEffect(()=>{
-// ;
-//     },[isLogIn])
+  return (
+    <section className="dashboard-page">
+      <div className="dashboard">
+        <h2>The super cescret dahsboard!!!</h2>
+        <button onClick={handleLogout}>Log out</button>
+        <AvatarPicker />
+      </div>
+    </section>
+  );
+};
 
-    return (
-        <div>
-            <h2>The super cescret dahsboard!!!</h2>
-            <button onClick={handleLogout   }>Log out</button>
-        </div>
-    )
-}
+const mapStateToProps = (state) => ({ isLogIn: state.isLogIn });
 
-const mapStateToProps = (state) => ({ isLogIn: state.isLogIn })
-
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return { logout: () => dispatch({ type: LOGOUT }) };
-}
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
