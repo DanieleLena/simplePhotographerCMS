@@ -6,6 +6,9 @@ import axios from "axios";
 import '../axios';
 import { connect } from 'react-redux';
 import { LOGIN_SUCCESS } from "../actions";
+import { useHistory } from "react-router-dom";
+
+
 
 
 
@@ -16,7 +19,8 @@ const SignInForm = ({ loginSuccess}) => {
     });
     const [error, setError] = useState(false)
 
-   
+    const history = useHistory();
+
 
     const formOnChange = (e) => {
         if(e.target.name === "email") {
@@ -33,18 +37,17 @@ const SignInForm = ({ loginSuccess}) => {
         }
     }
     const handleSubmit =  async (e) => {
-
         e.preventDefault();
-        // console.log(logIn)
+        
         try {
           const {data} = await axios.post("/auth/login",logIn);
-          // setError(false);
           localStorage.setItem(
             "user",
             JSON.stringify({ name: data.user.name, token: data.token })
             );
-        
             loginSuccess(data);
+            history.push("/admin");
+
           } catch (error) {
             console.log(error);
             setError(true);
