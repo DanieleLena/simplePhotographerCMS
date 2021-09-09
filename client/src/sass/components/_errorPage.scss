@@ -1,0 +1,25 @@
+ .errorPage{
+ width: 100%;
+  background-color: wheat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: none;
+  z-index: 0;
+ 
+  img {
+    width: 30%;
+    position: relative;
+    left: 2%;
+  }
+  button {
+    margin-bottom: 5rem;
+  }
+  p {
+    position: absolute;
+    bottom: 0%;
+    font-size: 0.8rem;
+  }
+  }

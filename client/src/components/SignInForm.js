@@ -1,17 +1,22 @@
 import e from 'cors'
 import { set } from 'mongoose'
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from "axios";
+import '../axios';
+import { connect } from 'react-redux';
+import { LOGIN_SUCCESS } from "../actions";
 
 
 
-const SignInForm = () => {
-
+const SignInForm = ({ loginSuccess}) => {
     const [logIn, setLogIn] = useState({
-      email: "admin@example.com",
+      email: "admin1@example.com",
       password: "example",
     });
+    const [error, setError] = useState(false)
+
+   
 
     const formOnChange = (e) => {
         if(e.target.name === "email") {
@@ -30,24 +35,44 @@ const SignInForm = () => {
     const handleSubmit =  async (e) => {
 
         e.preventDefault();
-        console.log(logIn)
-        const response = await axios.post("http://localhost:5000/api/v1/auth/login",logIn);
-        console.log(response);
+        // console.log(logIn)
+        try {
+          const {data} = await axios.post("/auth/login",logIn);
+          // setError(false);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ name: data.user.name, token: data.token })
+            );
+        
+            loginSuccess(data);
+          } catch (error) {
+            console.log(error);
+            setError(true);
+        }
+       
 
 
     }
 
+
+    // useEffect(() => {
+    //   localStorage.setItem(
+    //     "user",
+    //     JSON.stringify({ name: 'DANIELE', token:'PROVAATOKEN222' })
+    //   );
+    // }, [])
     return (
       <section className="login-section">
         <form className="login-form" onSubmit={handleSubmit}>
           <h1>Login</h1>
+          <p>Please keep the default values to login</p>
           <label htmlFor="email">email:</label>
           <input
             type="email"
             id="email"
             name="email"
             value={logIn.email}
-            onChange={formOnChange}
+            onChange={formOnChange }
             required
           ></input>
           <label htmlFor="password">password:</label>
@@ -59,10 +84,15 @@ const SignInForm = () => {
             onChange={formOnChange}
             required
           ></input>
+          {error && <h2>Password or email incorretc</h2>}
           <button type="submit">Log In</button>
         </form>
       </section>
     );
 }
 
-export default SignInForm
+const mapDispatchToProps = (dispatch,ownProps) => {
+  return { loginSuccess : (data) => dispatch({type: LOGIN_SUCCESS, payload: data})}
+}
+
+export default connect(null,mapDispatchToProps)(SignInForm);

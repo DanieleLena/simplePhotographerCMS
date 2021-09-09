@@ -17,7 +17,6 @@ const login = async (req, res) => {
   }
   const user = await User.findOne({ email });
   if (!user) {
-    // return res.send('erroreee');
     throw new UnauthenticatedError("Invalid Credentials");
   }
   const isPasswordCorrect = await user.comparePassword(password);

@@ -7,10 +7,10 @@ require('dotenv').config();
 const cors = require("cors");
 
 const authRouter = require('./routes/authRoute');
+const uploadRouter = require('./routes/uploadRoute')
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const authenticateUser = require("./middleware/authentication");
-
 
 
 
@@ -21,6 +21,7 @@ app.use(cors());
 
 //routes
 app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/upload', authenticateUser, uploadRouter)
 
 
 app.use(notFoundMiddleware);
