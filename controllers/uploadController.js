@@ -11,15 +11,15 @@ const upload = async (req, res) => {
 
 const uploadLandingPage = async (req, res) => {
 
-console.log(req.file.path)
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    use_filename: true,
-    folder: "simplePhotographerCMS/landingPage",
-  });
+console.log(req.file)
+
+  // const result = await cloudinary.uploader.upload(req.file.path, {
+  //   use_filename: true,
+  //   folder: "simplePhotographerCMS/landingPage",
+  // });
   fs.unlinkSync(req.file.path);
   console.log(result.secure_url )
   return res.status(StatusCodes.OK).json({ image: { src: result.secure_url } });
-
 };
 
 
