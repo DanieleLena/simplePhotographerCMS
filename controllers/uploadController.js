@@ -16,7 +16,8 @@ console.log(req.file.path)
     use_filename: true,
     folder: "simplePhotographerCMS/landingPage",
   });
-  fs.unlinkSync(req.files.image.tempFilePath);
+  fs.unlinkSync(req.file.path);
+  console.log(result.secure_url )
   return res.status(StatusCodes.OK).json({ image: { src: result.secure_url } });
 
 };
