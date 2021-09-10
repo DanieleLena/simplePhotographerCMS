@@ -1,16 +1,32 @@
 import Uppy from "@uppy/core";
 import React from "react";
 import Tus from "@uppy/tus";
-// import GoogleDrive from '@uppy/google-drive'
+import XHRUpload from '@uppy/xhr-upload';
+
+
 import { DragDrop, useUppy,Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 
 function AvatarPicker() {
+
+  const getCurrentUserToken = () => {
+    const  user = JSON.parse(localStorage.getItem("user"));
+    const {token} = user
+    return token
+
+  }
+
+const headers = {
+  authorization: `Bearer ${getCurrentUserToken()}`,
+};
   const uppy = useUppy(() => {
-    return new Uppy()
-      .use(Tus, { endpoint: "https://tusd.tusdemo.net/files" })
-      
+    return new Uppy().use(XHRUpload, {
+      endpoint: "http://localhost:5000/api/v1/upload/landingPage",
+      fieldName: "photo",
+      formData: true,
+      headers: headers,
+    });
   });
 
   return (
