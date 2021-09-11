@@ -26,33 +26,21 @@ function AvatarPicker() {
         fieldName: "photo",
         formData: true,
         headers: headers,
-        meta: { username: "John" },
-      })
-      .on("file-added", (file) => {
         
-        uppy.setFileMeta(file.id, {
-          test: "hello",
-        });
-        console.log(file.id);
-      });
+    
+      })
   });
 
   return (
     <Dashboard
       width="90%"
-      height="300px"
+      height="500px"
       note="Images up to 200×200px"
       metaFields = {[
     { id: 'name', name: 'Name', placeholder: 'file name' },
     { id: 'position', name: 'position', placeholder: 'specify the order when display' },
     { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' },
-    // {
-    //   id: 'public',
-    //   name: 'Public',
-    //   render ({ value, onChange, required, form }, h) {
-    //     return h('input', { type: 'checkbox', required, form, onChange: (ev) => onChange(ev.target.checked ? 'on' : ''), defaultChecked: value === 'on' })
-    //   },
-    // },
+  
   ]}
       // assuming `this.uppy` contains an Uppy instance:
       uppy={uppy}
