@@ -11,7 +11,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   //   return res.status(err.statusCode).json({ msg: err.message })
   // }
 
-  console.log("siamo nell error middleware")
+  console.log(err.name)
 
   if (err.name === "ValidationError") {
     customError.msg = Object.values(err.errors)

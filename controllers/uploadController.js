@@ -21,7 +21,7 @@ const uploadLandingPage = async (req, res) => {
   if (Number.isNaN(position)) {
     console.log("not a number")
     throw new BadRequestError(
-      `The position field in ${name}  must be a Number`
+      `The position field in ${name} must be a Number, please press on "Cancel" and try again`
     );
   }
 
@@ -45,7 +45,7 @@ const uploadLandingPage = async (req, res) => {
 
   const image = await Image.create(img);
 
-  return res.status(StatusCodes.OK).json({ image: { src: result.secure_url } });
+  return res.status(StatusCodes.CREATED).json(image);
 };
 
 module.exports = {
