@@ -6,7 +6,7 @@ const ErrorPage = () => {
       <>
         <section className="errorPage">
           <img
-            src={process.env.PUBLIC_URL + "/images/404.png"}
+            src='/assets/404.png'
             alt="page not found"
           />
           <Link to="/">

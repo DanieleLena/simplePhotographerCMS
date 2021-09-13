@@ -8,8 +8,8 @@ import { useUppy, Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 
-function AvatarPicker() {
-  const [error, setError] = useState([]);
+function ImageUploader() {
+  const [error, setError] = useState(["The position field in ${name} must be a Number, please press on  and try again","The position field in ${name} must be a Number, please press on  and try again"]);
 
   //get the user token from the local storage
   const getCurrentUserToken = () => {
@@ -41,7 +41,7 @@ function AvatarPicker() {
       <Dashboard
         width="90%"
         height="500px"
-        note="Images up to 200×200px"
+        note="Images up to 200×200px" 
         metaFields={[
           { id: "name", name: "Name", placeholder: "file name" },
           {
@@ -71,7 +71,7 @@ function AvatarPicker() {
         error.map((err, index) => {
           return (
             <p className="uploadError" key={index}>
-              {err}
+             - {err}
             </p>
           );
         })}
@@ -79,4 +79,4 @@ function AvatarPicker() {
   );
 }
 
-export default AvatarPicker;
+export default ImageUploader;

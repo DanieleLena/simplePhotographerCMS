@@ -1,4 +1,4 @@
 import SignInForm from "./SignInForm";
-import AvatarPicker from "./AvatarPicker";
+import ImageUploader from "./ImageUploader";
 
-export { SignInForm, AvatarPicker };
+export { SignInForm, ImageUploader,  };
