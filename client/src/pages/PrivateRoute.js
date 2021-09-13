@@ -6,7 +6,6 @@ const PrivateRoute = ({children, ...rest}) => {
   // this ...rest grab all the parameters in App.js,  on the PrivateRoute component
 
   const [user, setUser] = useState(localStorage.getItem("user"));
-console.log('siamo in private route')
   
   return <Route {...rest} render={()=> {
     return user ? children : <Redirect to="/login"></Redirect>;

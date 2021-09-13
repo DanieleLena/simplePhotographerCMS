@@ -3,6 +3,7 @@ import { LOGOUT } from "../actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { ImageUploader, ManageCard } from "../components";
+import { Link } from "react-router-dom";
 
 const Dashboard = ({ isLogIn, logout }) => {
   const history = useHistory();
@@ -27,7 +28,9 @@ const Dashboard = ({ isLogIn, logout }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores porro debitis unde necessitatibus aperiam ipsa
               </p>
-              <button className="custom-btn btn-2">Manage</button>
+              
+                <Link to="/admin/manageLandingPage"><button className="custom-btn btn-2">Manage</button></Link>
+              
             </div>
             <div className="manage-card-image">
               <img src="/assets/landignpage.jpg"></img>
