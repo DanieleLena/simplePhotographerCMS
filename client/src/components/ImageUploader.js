@@ -9,7 +9,7 @@ import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 
 function ImageUploader() {
-  const [error, setError] = useState(["The position field in ${name} must be a Number, please press on  and try again","The position field in ${name} must be a Number, please press on  and try again"]);
+  const [response, setResponse] = useState([]);
 
   //get the user token from the local storage
   const getCurrentUserToken = () => {
@@ -23,25 +23,35 @@ function ImageUploader() {
     authorization: `Bearer ${getCurrentUserToken()}`,
   };
   const uppy = useUppy(() => {
-    return new Uppy().use(XHRUpload, {
-      endpoint: "http://localhost:5000/api/v1/upload/landingPage",
-      fieldName: "photo",
-      formData: true,
-      headers: headers,
-      getResponseError(responseText, response) {
-        let newError = JSON.parse(responseText).msg;
-        setError((oldArray) => [...oldArray, newError]);
-      },
-    });
+    return new Uppy()
+      .use(XHRUpload, {
+        endpoint: "http://localhost:5000/api/v1/upload/landingPage",
+        fieldName: "photo",
+        formData: true,
+        headers: headers,
+        getResponseError(responseText) {
+          let newError = JSON.parse(responseText).msg;
+          setResponse((oldArray) => [
+            ...oldArray,
+            { msg: newError, error: true },
+          ]);
+        },
+      })
+      .on("upload-success", (file) => {
+        let newSuccess = `The image ${file.name} is added correctly.`;
+        setResponse((oldArray) => [
+          ...oldArray,
+          { msg: newSuccess, error: false },
+        ]);
+      });
   });
 
   return (
-    <section>
-      <h1>Upload images for the Landing Page</h1>
-      <Dashboard
-        width="90%"
+    <>
+      <Dashboard className="imageUploader"
+        width="100%"
         height="500px"
-        note="Images up to 200×200px" 
+        note="Images up to 200×200px"
         metaFields={[
           { id: "name", name: "Name", placeholder: "file name" },
           {
@@ -67,15 +77,20 @@ function ImageUploader() {
           },
         }}
       />
-      {error &&
-        error.map((err, index) => {
-          return (
-            <p className="uploadError" key={index}>
-             - {err}
-            </p>
-          );
-        })}
-    </section>
+      <div className="response-box">
+        {response &&
+          response.map((res, index) => {
+            return (
+              <p
+                className={res.error ? "response-error" : "response-success"}
+                key={index}
+              >
+                - {res.msg}
+              </p>
+            );
+          })}
+      </div>
+    </>
   );
 }
 

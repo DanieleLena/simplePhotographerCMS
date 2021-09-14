@@ -1,5 +1,16 @@
-.uploadError {
+
+.imageUploader{
+    margin: auto;
+  
+}
+
+.response-error {
     font-size: 1.5rem;
     color: red;
+    margin: 1rem;
+}
+.response-success {
+    font-size: 1.5rem;
+    color: green;
     margin: 1rem;
 }

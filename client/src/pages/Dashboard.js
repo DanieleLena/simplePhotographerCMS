@@ -28,9 +28,10 @@ const Dashboard = ({ isLogIn, logout }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores porro debitis unde necessitatibus aperiam ipsa
               </p>
-              
-                <Link to="/admin/manageLandingPage"><button className="custom-btn btn-2">Manage</button></Link>
-              
+
+              <Link to="/admin/manageLandingPage">
+                <button className="custom-btn btn-2">Manage</button>
+              </Link>
             </div>
             <div className="manage-card-image">
               <img src="/assets/landignpage.jpg"></img>
@@ -44,7 +45,9 @@ const Dashboard = ({ isLogIn, logout }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores porro debitis unde necessitatibus aperiam ipsa
               </p>
-              <button className="custom-btn btn-2">Manage</button>
+              <Link to="/admin/manageProjects">
+                <button className="custom-btn btn-2">Manage</button>
+              </Link>
             </div>
             <div className="manage-card-image">
               <img src="/assets/projects-card.jpg"></img>
@@ -59,7 +62,9 @@ const Dashboard = ({ isLogIn, logout }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores porro debitis unde necessitatibus aperiam ipsa
               </p>
-              <button className="custom-btn btn-2">Manage</button>
+              <Link to="/admin/manageLayout">
+                <button className="custom-btn btn-2">Manage</button>
+              </Link>
             </div>
             <div className="manage-card-image">
               <img src="/assets/landignpage.jpg"></img>
@@ -74,7 +79,9 @@ const Dashboard = ({ isLogIn, logout }) => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores porro debitis unde necessitatibus aperiam ipsa
               </p>
-              <button className="custom-btn btn-2">Manage</button>
+              <Link to="/admin/manageContact">
+                <button className="custom-btn btn-2">Manage</button>
+              </Link>
             </div>
             <div className="manage-card-image">
               <img src="/assets/landignpage.jpg"></img>

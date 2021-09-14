@@ -1,10 +1,10 @@
 import React from 'react'
-import { ImageUploader } from '../components'
-import { Link } from 'react-router-dom'
-import {IoIosArrowBack} from 'react-icons/io'
-import {BiEditAlt} from 'react-icons/bi'
+import { ImageUploader } from "../components";
+import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
+import { BiEditAlt } from "react-icons/bi";
 
-const ManageLandingPage = () => {
+const ManageLayout = () => {
     return (
       <main className="dashboard-page">
         <section className="dashboard">
@@ -18,7 +18,7 @@ const ManageLandingPage = () => {
             <h1>
               Upload images <br /> for the Landing Page
             </h1>
-            <Link to="/" target='_blank'>
+            <Link to="/" target="_blank">
               {" "}
               <button className="custom-btn btn-2">View Live</button>
             </Link>
@@ -35,4 +35,4 @@ const ManageLandingPage = () => {
     );
 }
 
-export default ManageLandingPage
+export default ManageLayout
