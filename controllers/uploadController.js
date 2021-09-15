@@ -9,7 +9,7 @@ const upload = async (req, res) => {
   console.log("private route!!!");
   res.status(StatusCodes.OK).send("<h2>Sono nella private route</h2>");
 };
-
+//Save to cloudinary and Save in the DB, return Image object
 const uploadLandingPage = async (req, res) => {
   //access metafields from uppy
   let { name, position, caption } = req.body;
@@ -18,8 +18,8 @@ const uploadLandingPage = async (req, res) => {
     position = Number(position);
   }
 
-  console.log(position);
   if (Number.isNaN(position)) {
+    fs.unlinkSync(req.file.path);
     throw new BadRequestError(
       `The position field in ${name} must be a Number, please press on "Cancel" and try again`
     );
@@ -54,20 +54,49 @@ const getLandingPageImages = async (req,res) => {
 
 }
 
+
+//Save to cloudinary and Return an Image object, DO NOT manipulate the DB
+const uploadImageProjects = async (req,res) => {
+let { name, position, caption } = req.body;
+if (position) {
+  position = Number(position);
+}
+
+if (Number.isNaN(position)) {
+  fs.unlinkSync(req.file.path);
+  throw new BadRequestError(
+    `The position field in ${name} must be a Number, please press on "Cancel" and try again`
+  );
+}
+
+//ADD to cloudinary
+const result = await cloudinary.uploader.upload(req.file.path, {
+  use_filename: true,
+  folder: "simplePhotographerCMS/landingPage",
+});
+//delete img from tmp folder
+fs.unlinkSync(req.file.path);
+
+let imgUrl = result.secure_url;
+
+let img = {
+  name,
+  position,
+  caption,
+  imgUrl,
+};
+console.log(img);
+
+// const image = await Image.create(img);
+
+return res.status(StatusCodes.OK).json({img});
+}
+
+
 const uploadProjects = async (req,res) => {
-  const {name,thumbnail,subtitle,description,images} = req.body;
 
-  const newProject = {
-    name,
-    thumbnail,
-    subtitle,
-    description,
-    images,
-  };
-
-    const project = await Project.create(newProject);
-    return res.status(StatusCodes.CREATED).json(project);
-
+  console.log(req.body);
+    const project = await Project.create(req.body);
 
 
 }
@@ -77,4 +106,5 @@ module.exports = {
   uploadLandingPage,
   getLandingPageImages,
   uploadProjects,
+  uploadImageProjects,
 };

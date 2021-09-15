@@ -2,15 +2,18 @@ import Uppy from "@uppy/core";
 import React from "react";
 import { useState } from "react";
 import XHRUpload from "@uppy/xhr-upload";
+import axios from "axios";
 
 import { useUppy, Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
-import {url} from '../helpers'
+import { url } from "../helpers";
 
-function ImageUploader() {
+
+const ProjectsImageUploader = () => {
   const [response, setResponse] = useState([]);
-
+  const [images,setImages] = useState([]);
+  const imageArray = [];
 
   //get the user token from the local storage
   const getCurrentUserToken = () => {
@@ -25,12 +28,13 @@ function ImageUploader() {
   };
   const uppy = useUppy(() => {
     return new Uppy()
+
       .use(XHRUpload, {
-        endpoint: `${url}/upload/landingPage`,
+        endpoint: `${url}/upload/projects/image`,
         fieldName: "photo",
         formData: true,
         headers: headers,
-        
+
         getResponseError(responseText) {
           let newError = JSON.parse(responseText).msg;
           setResponse((oldArray) => [
@@ -39,7 +43,11 @@ function ImageUploader() {
           ]);
         },
       })
-      .on("upload-success", (file) => {
+      .on("upload-success", (file,response,) => {
+
+        console.log(response);
+        
+        imageArray.push(response.body.img);
         let newSuccess = `The image ${file.name} is added correctly.`;
         setResponse((oldArray) => [
           ...oldArray,
@@ -48,12 +56,37 @@ function ImageUploader() {
       });
   });
 
+  const handleUpload = async () => {
+    //to get from form
+    const name = "progetto 1";
+    const description = "lorem dkdkdk kdkddkdkdkdkdkd";
+
+    if(!name) {
+      console.log("errore");
+    }
+    //start the upload for the images at url/upload/projects/images
+    const result = await uppy.upload();
+    console.log(imageArray);
+
+    const newProject = {
+      name,
+      description,
+      imageArray
+    }
+
+    const resultProject = axios.post(`${url}/upload/projects`, newProject);
+
+  };
+
   return (
     <>
-      <Dashboard className="imageUploader"
-        width="100%"
+      <Dashboard
+        className="imageUploader"
+        id="Dashboard"
+        width="500px"
         height="500px"
         note="Images up to 200×200px"
+        hideUploadButton="false"
         metaFields={[
           { id: "name", name: "Name", placeholder: "file name" },
           {
@@ -79,6 +112,9 @@ function ImageUploader() {
           },
         }}
       />
+      <div>
+        <button onClick={handleUpload}>UPLOAD</button>
+      </div>
       <div className="response-box">
         {response &&
           response.map((res, index) => {
@@ -94,6 +130,6 @@ function ImageUploader() {
       </div>
     </>
   );
-}
+};
 
-export default ImageUploader;
+export default ProjectsImageUploader;

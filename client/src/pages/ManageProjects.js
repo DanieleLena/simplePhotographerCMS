@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { BiEditAlt } from "react-icons/bi";
 import axios from 'axios';
-
+import { ProjectsImageUploader } from '../components';
 const ManageProjects = () => {
 
 //   const [projectsList,setProjectsList] = useState([]);
@@ -61,6 +61,7 @@ const toggleNested = (e) => {
             </div>
             <div className="projects-create">
               <h2>Create a new Project</h2>
+              <ProjectsImageUploader />
             </div>
           </div>
 

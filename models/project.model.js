@@ -21,13 +21,8 @@ const ProjectSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  images: [ImageSchema],
-    // images: [
-    //     {type: ImageSchema,}
-    // ]
-    // images: [
-        
-    // ],
+  imageArray: [ImageSchema],
+
 });
 
 
