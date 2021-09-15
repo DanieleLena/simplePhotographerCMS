@@ -1,0 +1,24 @@
+.projects-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.projects-list{
+    width: 50%;
+    height: 80vh;
+    background-color: white;
+
+}
+
+#list {
+    li{
+        font-size: 3rem;
+    }
+    .caret{
+        cursor: pointer;
+    }
+    .nested {
+        display: none;
+    }
+}

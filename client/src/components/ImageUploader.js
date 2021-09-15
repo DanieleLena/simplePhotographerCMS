@@ -7,9 +7,11 @@ import XHRUpload from "@uppy/xhr-upload";
 import { useUppy, Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
+import {url} from '../helpers'
 
 function ImageUploader() {
   const [response, setResponse] = useState([]);
+
 
   //get the user token from the local storage
   const getCurrentUserToken = () => {
@@ -25,7 +27,7 @@ function ImageUploader() {
   const uppy = useUppy(() => {
     return new Uppy()
       .use(XHRUpload, {
-        endpoint: "http://localhost:5000/api/v1/upload/landingPage",
+        endpoint: `${url}/upload/landingPage`,
         fieldName: "photo",
         formData: true,
         headers: headers,

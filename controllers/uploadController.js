@@ -3,6 +3,7 @@ const { CustomAPIError, BadRequestError } = require("../errors");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const Image = require("../models/image.model");
+const Project = require('../models/project.model')
 
 const upload = async (req, res) => {
   console.log("private route!!!");
@@ -19,7 +20,6 @@ const uploadLandingPage = async (req, res) => {
 
   console.log(position);
   if (Number.isNaN(position)) {
-    console.log("not a number")
     throw new BadRequestError(
       `The position field in ${name} must be a Number, please press on "Cancel" and try again`
     );
@@ -47,8 +47,34 @@ const uploadLandingPage = async (req, res) => {
 
   return res.status(StatusCodes.CREATED).json(image);
 };
+const getLandingPageImages = async (req,res) => {
+
+  const images = await Image.find({});
+  res.status(StatusCodes.OK).json({images});
+
+}
+
+const uploadProjects = async (req,res) => {
+  const {name,thumbnail,subtitle,description,images} = req.body;
+
+  const newProject = {
+    name,
+    thumbnail,
+    subtitle,
+    description,
+    images,
+  };
+
+    const project = await Project.create(newProject);
+    return res.status(StatusCodes.CREATED).json(project);
+
+
+
+}
 
 module.exports = {
   upload,
   uploadLandingPage,
+  getLandingPageImages,
+  uploadProjects,
 };
