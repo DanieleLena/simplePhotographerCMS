@@ -12,10 +12,12 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+
 $white: white;
 
 $radius: 10px;
 $shadow: 9px 5px 15px -5px rgba(0, 0, 0, 0.82);
+$neuromorphic: 0 0 0 #b5b0b0,  0 0 0 #ffffff,inset -0.047em 0.08em 0.132em rgba(0,0,0,0.5),inset 0.047em -0.05em 0.132em rgba(255,255,255,0.8);
 
 
 $max-width: 930px;

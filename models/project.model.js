@@ -8,11 +8,6 @@ const ProjectSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 25,
   },
-  thumbnail: {
-    type: String,
-    minLength: 3,
-    require: [true, "Please provide a thumbnail"],
-  },
   subtitle: {
     type: String,
     minLength: 0,

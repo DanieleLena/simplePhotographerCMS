@@ -50,7 +50,8 @@ function ImageUploader() {
 
   return (
     <>
-      <Dashboard className="imageUploader"
+      <Dashboard
+        className="imageUploader"
         width="100%"
         height="500px"
         note="Images up to 200×200px"
@@ -59,6 +60,7 @@ function ImageUploader() {
           {
             id: "position",
             name: "position",
+            type: "number",
             placeholder: "specify the order when display",
           },
           {

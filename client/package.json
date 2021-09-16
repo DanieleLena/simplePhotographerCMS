@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@uppy/core": "^2.0.2",
+    "@uppy/file-input": "^2.0.1",
     "@uppy/google-drive": "^2.0.1",
     "@uppy/react": "^2.0.2",
     "@uppy/tus": "^2.0.1",

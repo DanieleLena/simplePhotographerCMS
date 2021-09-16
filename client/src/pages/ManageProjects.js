@@ -59,10 +59,9 @@ const toggleNested = (e) => {
                 </ul>
               </div>
             </div>
-            <div className="projects-create">
-              <h2>Create a new Project</h2>
+              
               <ProjectsImageUploader />
-            </div>
+            
           </div>
 
           {/* <ImageUploader /> */}

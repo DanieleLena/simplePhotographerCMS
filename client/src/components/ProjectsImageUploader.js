@@ -1,5 +1,5 @@
 import Uppy from "@uppy/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import XHRUpload from "@uppy/xhr-upload";
 import axios from "axios";
@@ -7,13 +7,23 @@ import axios from "axios";
 import { useUppy, Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
+import { BiEditAlt } from "react-icons/bi";
+
+
 import { url } from "../helpers";
 
+
+  const newImageArray = [];
 
 const ProjectsImageUploader = () => {
   const [response, setResponse] = useState([]);
   const [images,setImages] = useState([]);
-  const imageArray = [];
+  const [project,setProject] = useState({
+    name: "",
+    subtitle: "",
+    description: "",
+    imageArray: []
+  })
 
   //get the user token from the local storage
   const getCurrentUserToken = () => {
@@ -26,6 +36,10 @@ const ProjectsImageUploader = () => {
   const headers = {
     authorization: `Bearer ${getCurrentUserToken()}`,
   };
+
+
+
+
   const uppy = useUppy(() => {
     return new Uppy()
 
@@ -42,12 +56,12 @@ const ProjectsImageUploader = () => {
             { msg: newError, error: true },
           ]);
         },
-      })
+       })
       .on("upload-success", (file,response,) => {
-
-        console.log(response);
-        
-        imageArray.push(response.body.img);
+  
+        console.log(response.body.img);
+        newImageArray.push(response.body.img);
+        console.log(newImageArray);
         let newSuccess = `The image ${file.name} is added correctly.`;
         setResponse((oldArray) => [
           ...oldArray,
@@ -56,78 +70,149 @@ const ProjectsImageUploader = () => {
       });
   });
 
-  const handleUpload = async () => {
-    //to get from form
-    const name = "progetto 1";
-    const description = "lorem dkdkdk kdkddkdkdkdkdkd";
 
-    if(!name) {
-      console.log("errore");
-    }
-    //start the upload for the images at url/upload/projects/images
-    const result = await uppy.upload();
-    console.log(imageArray);
+  const handleOnChange = (e) => {
+    const value = e.target.value;
+    setProject({
+      ...project,
+      [e.target.name]: value,
+    });
+  }
 
-    const newProject = {
-      name,
-      description,
-      imageArray
-    }
 
-    const resultProject = axios.post(`${url}/upload/projects`, newProject);
+  const handleUpload = async (e) => {
+    e.preventDefault();
+
+    //start the upload for the images at url/upload/projects/images    
+      const result = await uppy.upload();
+      if(result.failed.length > 0){
+        return
+      }
+
+    
+   
+
+    const newProject = project;
+    newProject.imageArray = newImageArray
+
+    console.log(project)
+
+      const resultProject = await axios.post(`${url}/upload/projects`, newProject);
 
   };
 
   return (
     <>
-      <Dashboard
-        className="imageUploader"
-        id="Dashboard"
-        width="500px"
-        height="500px"
-        note="Images up to 200×200px"
-        hideUploadButton="false"
-        metaFields={[
-          { id: "name", name: "Name", placeholder: "file name" },
-          {
-            id: "position",
-            name: "position",
-            placeholder: "specify the order when display",
-          },
-          {
-            id: "caption",
-            name: "Caption",
-            placeholder: "describe what the image is about",
-          },
-        ]}
-        // assuming `this.uppy` contains an Uppy instance:
-        uppy={uppy}
-        locale={{
-          strings: {
-            // Text to show on the droppable area.
-            // `%{browse}` is replaced with a link that opens the system file selection dialog.
-            dropHereOr: "Drop here or %{browse}",
-            // Used as the label for the link that opens the system file selection dialog.
-            browse: "browse",
-          },
-        }}
-      />
-      <div>
-        <button onClick={handleUpload}>UPLOAD</button>
-      </div>
-      <div className="response-box">
-        {response &&
-          response.map((res, index) => {
-            return (
-              <p
-                className={res.error ? "response-error" : "response-success"}
-                key={index}
-              >
-                - {res.msg}
-              </p>
-            );
-          })}
-      </div>
+      <form className="project-form" onSubmit={handleUpload}>
+        <h2>Create a new Project</h2>
+
+        <div className="project-form-input">
+          <label>
+            Project Name: <br></br>
+            <input
+              type="text"
+              name="name"
+              value={project.name}
+              onChange={handleOnChange}
+              required
+            />
+          </label>
+
+          <label>
+            Subtitle: <br></br>
+            <input
+              type="text"
+              name="subtitle"
+              max="30"
+              value={project.subtitle}
+              onChange={handleOnChange}
+              required
+            />
+          </label>
+          <label>
+            Description:<br></br>
+            <textarea
+              type="text"
+              name="description"
+              value={project.description}
+              onChange={handleOnChange}
+            />
+          </label>
+        </div>
+        <h3>Insert Images in the project:</h3>
+        <p>
+          Add Images to display in your project page, browse or drop files in
+          the white box below.<br></br> Click on the "edit" icon (<BiEditAlt />)
+          to add details for each image like preferred position and description.
+          <br></br>
+          <strong>
+            Check the box in the edit section to display the image as Thumbnail
+            for your project.
+          </strong>
+        </p>
+        <Dashboard
+          className="imageUploader"
+          id="Dashboard"
+          width="100%"
+          height="400px"
+          note="Images up to 200×200px"
+          hideUploadButton="false"
+          metaFields={[
+            { id: "name", name: "Name", placeholder: "file name" },
+            {
+              id: "thumbnail",
+              name: "thumbnail",
+              render: ({ value, onChange }, h) => {
+                return h("input", {
+                  type: "checkbox",
+                  onChange: (ev) => onChange(ev.target.checked ? "on" : "off"),
+                  defaultChecked: value === "on",
+                });
+              },
+            },
+            {
+              id: "position",
+              name: "position",
+              type: "number",
+              placeholder: "specify the order when display",
+            },
+            {
+              id: "caption",
+              name: "Caption",
+              placeholder: "describe what the image is about",
+            },
+          ]}
+          // assuming `this.uppy` contains an Uppy instance:
+          uppy={uppy}
+          locale={{
+            strings: {
+              // Text to show on the droppable area.
+              // `%{browse}` is replaced with a link that opens the system file selection dialog.
+              dropHereOr: "Drop here or %{browse}",
+              // Used as the label for the link that opens the system file selection dialog.
+              browse: "browse",
+            },
+          }}
+        />
+        <div className="button-container">
+          <button type="submit" className="custom-btn btn-2">
+            UPLOAD
+          </button>
+        </div>
+        <div className="response-box">
+          {response &&
+            response.map((res, index) => {
+              return (
+                <p
+                  className={res.error ? "response-error" : "response-success"}
+                  key={index}
+                >
+                  - {res.msg}
+                </p>
+              );
+            })}
+        </div>
+      </form>
     </>
   );
 };

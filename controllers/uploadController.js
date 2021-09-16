@@ -57,17 +57,17 @@ const getLandingPageImages = async (req,res) => {
 
 //Save to cloudinary and Return an Image object, DO NOT manipulate the DB
 const uploadImageProjects = async (req,res) => {
-let { name, position, caption } = req.body;
+let { name, position,caption } = req.body;
 if (position) {
   position = Number(position);
 }
 
-if (Number.isNaN(position)) {
-  fs.unlinkSync(req.file.path);
-  throw new BadRequestError(
-    `The position field in ${name} must be a Number, please press on "Cancel" and try again`
-  );
-}
+// if (Number.isNaN(position)) {
+//   fs.unlinkSync(req.file.path);
+//   throw new BadRequestError(
+//     `The position field in ${name} must be a Number, please press on "Cancel" and try again`
+//   );
+// }
 
 //ADD to cloudinary
 const result = await cloudinary.uploader.upload(req.file.path, {
