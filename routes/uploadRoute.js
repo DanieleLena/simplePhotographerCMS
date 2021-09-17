@@ -6,12 +6,13 @@ const {
   uploadProjects,
   getLandingPageImages,
   uploadImageProjects,
+  getAllProject,
 } = require("../controllers/uploadController");
 
 router.get("/", upload);
 router.route("/landingPage").post(uploadLandingPage).get(getLandingPageImages);
 router.route("/projects/image").post(uploadImageProjects);
-router.route("/projects").post(uploadProjects);
+router.route("/projects").post(uploadProjects).get(getAllProject)
 
 
 

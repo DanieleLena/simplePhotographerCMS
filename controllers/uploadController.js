@@ -62,13 +62,6 @@ if (position) {
   position = Number(position);
 }
 
-// if (Number.isNaN(position)) {
-//   fs.unlinkSync(req.file.path);
-//   throw new BadRequestError(
-//     `The position field in ${name} must be a Number, please press on "Cancel" and try again`
-//   );
-// }
-
 //ADD to cloudinary
 const result = await cloudinary.uploader.upload(req.file.path, {
   use_filename: true,
@@ -91,14 +84,18 @@ console.log(img);
 
 return res.status(StatusCodes.OK).json({img});
 }
-
-
 const uploadProjects = async (req,res) => {
 
-  console.log(req.body);
+     console.log(req.body);
     const project = await Project.create(req.body);
 
+       res.status(StatusCodes.OK).json({ project });
 
+
+}
+const getAllProject = async (req,res) => {
+   const projects = await Project.find({});
+   res.status(StatusCodes.OK).json({ projects });
 }
 
 module.exports = {
@@ -107,4 +104,5 @@ module.exports = {
   getLandingPageImages,
   uploadProjects,
   uploadImageProjects,
+  getAllProject,
 };

@@ -4,22 +4,3 @@
     display: flex;
 }
 
-.projects-list{
-    width: 50%;
-    height: 80vh;
-        box-shadow: $neuromorphic;
-
-}
-
-
-#list {
-    li{
-        font-size: 3rem;
-    }
-    .caret{
-        cursor: pointer;
-    }
-    .nested {
-        display: none;
-    }
-}

@@ -1,0 +1,28 @@
+.projects-list{
+    width: 50%;
+    min-height: 80vh;
+    height: auto;
+        box-shadow: $neuromorphic;
+
+}
+
+
+#list {
+    li{
+        font-size: 2rem;
+    }
+    .caret{
+        cursor: pointer;
+    }
+  
+}
+ul{
+    li{
+     .nested {
+        // display: none;
+        font-size: 1rem !important;
+        padding-left: 3rem;
+    }   
+    }
+  
+}
