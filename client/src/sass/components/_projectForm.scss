@@ -63,3 +63,9 @@ flex-direction: column;
     width: auto;
     background-color: purple;
 }
+@media (max-width : $mq-small) {
+    .project-form{
+       width: 100%;
+    }
+    
+}

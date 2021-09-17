@@ -4,3 +4,10 @@
     display: flex;
 }
 
+@media (max-width : $mq-small) {
+    .projects-container{
+        flex-direction: column-reverse;
+        
+    }
+    
+}

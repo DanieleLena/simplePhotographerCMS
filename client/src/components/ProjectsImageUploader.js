@@ -87,7 +87,6 @@ const ProjectsImageUploader = () => {
     const newProject = project;
     newProject.imageArray = newImageArray;
 
-    console.log(project);
     try {
       const resultProject = await axios.post(
         `${url}/upload/projects`,
