@@ -14,15 +14,17 @@
     .caret{
         cursor: pointer;
     }
-  
-}
-ul{
-    li{
-     .nested {
-        // display: none;
-        font-size: 1rem !important;
-        padding-left: 3rem;
+    .nested {
+       padding-left: 3rem;
     }   
+    .close {
+        display: none;
+    }
+    .open {
+        display: block;
     }
   
+}
+.nested-item{
+    font-size: 1.5rem !important;
 }

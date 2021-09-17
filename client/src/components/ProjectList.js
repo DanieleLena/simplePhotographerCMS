@@ -6,37 +6,61 @@ import {url} from '../helpers'
 
 const ProjectList = () => {
     const [projectsList,setProjectsList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
   const fetchProjects = async () => {
+    setIsLoading(true);
 
     const {data} = await axios.get(`${url}/upload/projects`);
-    const newProjectList = data.projects;
+    let newProjectList = data.projects;
+     newProjectList = newProjectList.map((project) => {
+      return { ...project,isOpen: false}
+    });
     setProjectsList(newProjectList);
+     setIsLoading(false);
   }
+
+
 
     useEffect(()=> {
   fetchProjects();
     },[])
 
   const toggleNested = (e) => {
-    console.log(e.target.childNodes);
-  };    
-  return (
-    <div className="projects-list">
+    const id = e.target.id;
+      const projectToToggle = projectsList.map((project) => {
+        if (project._id === id){
+          project.isOpen = !project.isOpen;
+          return project;
+        } else 
+        return project;
+      });
+      setProjectsList(projectToToggle);
+      
+
+};  
+
+
+return (
+  <>
+   
+    {isLoading ? <h1>Loading</h1> :
+    (
+        <div className="projects-list">
       <h2>List of projects:</h2>
       <div className="list-container">
-        <ul id="list">
-          {projectsList.map((project) => {
-            const { name,imageArray } = project;
+         <ul id="list">
+           {projectsList.map((project) => {
+           const { name,imageArray,_id,isOpen } = project;
 
             return (
               <li>
-                <span class="caret" onClick={toggleNested}>
+                <span class="caret" id={_id} onClick={toggleNested}>
                   {name}
                 </span>
-                <ul class="nested">
+                <ul class={isOpen ? "open" : "close"}>
                     {imageArray.map((img)=>{
-                        return <li>{img.name}</li>;
+                        return <li className="nested-item">{img.name}</li>;
 
                     })}
                 </ul>
@@ -44,10 +68,12 @@ const ProjectList = () => {
             );
           })}
          
-        </ul>
+         </ul>
       </div>
     </div>
-  );
+    )}
+  </>
+);
 }
 
 export default ProjectList
