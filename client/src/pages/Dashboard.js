@@ -16,9 +16,19 @@ const Dashboard = ({ isLogIn, logout }) => {
   return (
     <section className="dashboard-page">
       <div className="dashboard">
-        <div className="dashboard-title">
-          <h1>Dashboard</h1>
-          <h3>Welcome Admin</h3>
+        <div className="dashboard-title dashboard-title-buttons ">
+          <h3 className="logout" onClick={handleLogout}>
+            Logout
+          
+          </h3>
+
+          <div>
+            <h1>Dashboard</h1>
+            <h3>Welcome Admin</h3>
+          </div>
+          <Link to="/" target="_blank">
+            <button className="custom-btn btn-2">View Live</button>
+          </Link>
         </div>
         <div className="dashboard-carts-container">
           <div className="manage-card">
@@ -88,7 +98,6 @@ const Dashboard = ({ isLogIn, logout }) => {
             </div>
           </div>
         </div>
-        <button onClick={handleLogout}>Log out</button>
         {/* <ImageUploader /> */}
       </div>
     </section>

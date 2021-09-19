@@ -35,9 +35,16 @@
   align-items: flex-end;
 
   h3{
-    //   font-size: 3rem;
-    display: flex;
-    align-items: center;
+    text-align: center;
+    
+  }
+  .logout{
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.555);
+    }
   }
 }
 .dashboard-p {

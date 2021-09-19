@@ -81,6 +81,25 @@ margin-bottom: .5rem;
     font-size: 1rem !important;
     padding-left: 11rem;
     margin-bottom:.5rem !important;
+    width: 100%;
+
+        &::before {
+            display: none;
+        }
+    span {
+        color:red;
+        visibility: hidden;
+        cursor: pointer;
+        position: relative;
+        right: 1px;
+    }
+
+    &:hover {
+        background-color: rgb(209, 204, 204)!important;
+        span {
+            visibility: visible;
+    }
+    }
 }
 
 @media (max-width : $mq-small) {

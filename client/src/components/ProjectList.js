@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState,useEffect } from 'react';
 import {url} from '../helpers'
 import LoadingSpin from "react-loading-spin";
+import {ImCross} from 'react-icons/im'
 
 
 
@@ -76,7 +77,7 @@ return (
                     </p>
 
                     {imageArray.map((img) => {
-                      return <li className="nested-item">{img.name}</li>;
+                      return <li className="nested-item">{img.name}<span><ImCross/></span></li>;
                     })}
                   </ul>
                 </li>
