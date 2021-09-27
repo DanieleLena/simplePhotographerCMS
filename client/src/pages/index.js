@@ -6,6 +6,8 @@ import ManageProjects from './ManageProjects'
 import ManageContact from './ManageContact';
 import ManageLayout from './ManageLayout';
 import LandingPage from "./LandingPage";
+import Projects from './Projects';
+import Contact from './Contact';
 
 
 export {
@@ -17,4 +19,6 @@ export {
   ManageLayout,
   ManageContact,
   LandingPage,
+  Projects,
+  Contact
 };

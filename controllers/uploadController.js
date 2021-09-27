@@ -3,7 +3,7 @@ const { CustomAPIError, BadRequestError } = require("../errors");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const Image = require("../models/image.model");
-const Project = require('../models/project.model')
+const Project = require("../models/project.model");
 
 const upload = async (req, res) => {
   console.log("private route!!!");
@@ -33,13 +33,16 @@ const uploadLandingPage = async (req, res) => {
   //delete img from tmp folder
   fs.unlinkSync(req.file.path);
 
-  let imgUrl = result.secure_url;
+ const { secure_url, width, height } = result;
+ let imgUrl = secure_url;
 
   let img = {
     name,
     position,
     caption,
     imgUrl,
+    width,
+    height,
   };
   console.log(img);
 
@@ -47,56 +50,61 @@ const uploadLandingPage = async (req, res) => {
 
   return res.status(StatusCodes.CREATED).json(image);
 };
-const getLandingPageImages = async (req,res) => {
-
+const getLandingPageImages = async (req, res) => {
   const images = await Image.find({});
-  res.status(StatusCodes.OK).json({images});
-
-}
-
+  res.status(StatusCodes.OK).json({ images });
+};
 
 //Save to cloudinary and Return an Image object, DO NOT manipulate the DB
-const uploadImageProjects = async (req,res) => {
-let { name, position,caption } = req.body;
-if (position) {
-  position = Number(position);
-}
+const uploadImageProjects = async (req, res) => {
+  console.log(req.body);
+  let { name, position, caption } = req.body;
+ 
 
-//ADD to cloudinary
-const result = await cloudinary.uploader.upload(req.file.path, {
-  use_filename: true,
-  folder: "simplePhotographerCMS/landingPage",
-});
-//delete img from tmp folder
-fs.unlinkSync(req.file.path);
+  if (position) {
+    position = Number(position);
+  }
 
-let imgUrl = result.secure_url;
+  //ADD to cloudinary
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    use_filename: true,
+    folder: "simplePhotographerCMS/projects",
+  });
+  //delete img from tmp folder
+  fs.unlinkSync(req.file.path);
 
-let img = {
-  name,
-  position,
-  caption,
-  imgUrl,
+  const {secure_url,width,height} = result;
+  let imgUrl = secure_url;
+
+  let img = {
+    name,
+    position,
+    caption,
+    imgUrl,
+    width,
+    height,
+  };
+
+
+  return res.status(StatusCodes.OK).json({ img });
 };
-console.log(img);
-
-// const image = await Image.create(img);
-
-return res.status(StatusCodes.OK).json({img});
-}
-const uploadProjects = async (req,res) => {
-
-     console.log(req.body);
-    const project = await Project.create(req.body);
-
-       res.status(StatusCodes.OK).json({ project });
 
 
-}
-const getAllProject = async (req,res) => {
+const uploadProjects = async (req, res) => {
+  console.log(req.body);
+  const project = await Project.create(req.body);
+
+  res.status(StatusCodes.OK).json({ project });
+};
+const getAllProject = async (req, res) => {
+  try {
    const projects = await Project.find({});
-   res.status(StatusCodes.OK).json({ projects });
-}
+    res.status(StatusCodes.OK).json({ projects }); 
+  } catch (error) {
+    throw new BadRequestError();
+  }
+  
+};
 
 module.exports = {
   upload,

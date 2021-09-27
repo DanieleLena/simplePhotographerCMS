@@ -20,6 +20,13 @@ const ImageSchema = new mongoose.Schema({
       type: String,
       require: [true, 'Image url missing']
   }
+  ,
+  width: {
+    type: Number,
+  },
+  height: {
+    type: Number,
+  }
 });
 
 module.exports = mongoose.model("Image", ImageSchema);

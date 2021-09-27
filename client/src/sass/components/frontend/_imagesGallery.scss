@@ -1,0 +1,69 @@
+.main-container {
+  width: 100%;
+  background-color: $custom-white;
+  // background-color: #3084a33f;
+  padding: $padding-page;
+
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: $padding-page;
+  }
+}
+
+
+.images-row{
+  width: 100%;
+  // min-height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $padding-page;
+
+  img {
+    z-index: 10;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    box-shadow: $shadow;
+    transition: box-shadow .5s ease-in-out;
+    //FOR FADE-IN ANIMATION
+    opacity: 1; // CHANGE LAZY LOADING ==============================================================
+
+
+    &:hover {
+      
+box-shadow: 9px 5px 15px 4px rgba(0,0,0,0.82);
+    }
+  }
+}
+
+
+  
+.full-width{
+  justify-content: center;
+}
+.opposite{
+  flex-direction: row-reverse;
+}
+.images-vertical {
+  width: 48.5%;
+
+}
+.images-horizontal {
+width: 48.5%;
+height: 100%;
+min-height: 1vh;
+
+display: flex;
+flex-direction: column;
+
+// grid-template-rows: 1fr 1fr;  
+grid-gap: $padding-page;
+
+.images-horizontal-top,
+.images-horizontal-bottom {
+  height: 50%;
+}
+
+}

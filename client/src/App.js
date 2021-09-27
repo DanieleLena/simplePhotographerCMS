@@ -1,16 +1,33 @@
-import logo from './logo.svg';
-import './sass/main.scss';
-import {SignInForm } from './components';
-import { ErrorPage, PrivateRoute, Dashboard, ManageLandingPage,ManageContact,ManageLayout,ManageProjects, LandingPage } from "./pages";
+import logo from "./logo.svg";
+import "./sass/main.scss";
+import { SignInForm, Navbar } from "./components";
+import {
+  ErrorPage,
+  PrivateRoute,
+  Dashboard,
+  ManageLandingPage,
+  ManageContact,
+  ManageLayout,
+  ManageProjects,
+  LandingPage,
+  Projects,
+  Contact
+} from "./pages";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-  
 function App() {
   return (
     <Router>
       <Switch>
+        
         <Route exact path="/">
-        <LandingPage />
+          <LandingPage />
+        </Route>
+        <Route exact path="/projects">
+          <Projects />
+        </Route>
+        <Route exact path="/contact">
+          <Contact />
         </Route>
 
         {/* PRIVATE ROUTES ADMIN ==================================== */}
@@ -30,7 +47,6 @@ function App() {
           <ManageContact />
         </PrivateRoute>
         {/* PRIVATE ROUTES ADMIN ==================================== */}
-
         <Route exact path="/login">
           <SignInForm />
         </Route>

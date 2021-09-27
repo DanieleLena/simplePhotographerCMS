@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const authRouter = require("./routes/authRoute");
 const uploadRouter = require("./routes/uploadRoute");
+
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const authenticateUser = require("./middleware/authentication");

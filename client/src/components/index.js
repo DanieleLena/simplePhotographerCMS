@@ -4,6 +4,8 @@ import ProjectsImageUploader from './ProjectsImageUploader'
 import ProjectList from './ProjectList';
 import Navbar from "./frontend/Navbar";
 import MobileMenu from "./frontend/MobileMenu";
+import ImagesGallery from './frontend/ImagesGallery';
+
 
 export {
   SignInForm,
@@ -12,4 +14,5 @@ export {
   ProjectList,
   Navbar,
   MobileMenu,
+  ImagesGallery,
 };
