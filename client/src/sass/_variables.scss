@@ -12,16 +12,24 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
+  
+// COLORS
 $white: white;
+$custom-black: #0D0D0D;
+$custom-white:white;
+$hover-color:rgba(0, 0, 0, 0.808);
+$neuromorphic: 0 0 0 #b5b0b0,  0 0 0 #ffffff,inset -0.047em 0.08em 0.132em rgba(0,0,0,0.5),inset 0.047em -0.05em 0.132em rgba(255,255,255,0.8);
 
 $radius: 10px;
 $shadow: 9px 5px 15px -5px rgba(0, 0, 0, 0.82);
-$neuromorphic: 0 0 0 #b5b0b0,  0 0 0 #ffffff,inset -0.047em 0.08em 0.132em rgba(0,0,0,0.5),inset 0.047em -0.05em 0.132em rgba(255,255,255,0.8);
+$padding-page: 5rem;
+$nav-bar-height: 50px;
+$shadow: 9px 5px 15px -5px rgba(0, 0, 0, 0.82);
 
 
 $max-width: 930px;
 
+//MEDIA QUERY
 $mq-small: 767px;
 $mq-medium: 1024px;
 $mq-large: 1366px;

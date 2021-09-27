@@ -1,0 +1,132 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: transparent;
+  width: 100%;
+  height: $nav-bar-height;
+  display: flex;
+  justify-content: space-between;
+  background-color: $custom-white;
+  padding: 0 $padding-page;
+  -webkit-box-shadow: 9px 5px 15px -2px rgba(0, 0, 0, 0.82);
+  box-shadow: 9px 5px 15px -5px rgba(0, 0, 0, 0.82);
+  transition: transform .5s ease-out;
+}
+//applied in the about page
+.nav-white-bg {
+  background-color: $custom-white;
+}
+.hide-nav {
+  transform: translateY(-100%);
+}
+.mobile-menu {
+  display: none;
+}
+.title {
+  line-height: 1rem;
+  text-align: left;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+  width: 2px;
+  height: 40px;
+  top: 3px;
+  left: -5px;
+  background: $custom-black;
+  }
+
+  &:hover{
+    color: $hover-color;
+
+  }
+}
+.nav-list {
+  position: relative;
+  left: -3%;
+  display: flex;
+  align-items: center;
+  li {
+    position: relative;
+    font-size: 2rem;
+    list-style: none;
+    text-transform: capitalize;
+    padding: 0 2rem;
+    &:hover {
+          color: $hover-color
+
+    }
+  }
+  li:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    // height: 2px;
+    width: 100%;
+    height: 0.1em;
+    background-color: $hover-color;
+    opacity: 0;
+    transition: opacity 400ms, transform 400ms;
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  a:hover::after,
+  a:focus::after {
+
+    transform: scale(.8);
+  }
+
+  li:hover::after {
+        
+
+    transform: scale(.8);
+  }
+}
+.nav-icon-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+.nav-icon {
+  font-size: 2.2rem;
+  margin: 0 1rem; 
+  
+  &:hover{
+    color: $hover-color;
+
+  }
+}
+.burger-icon {
+  display: none !important;
+}
+
+
+@media (max-width: $mq-small) {
+  .nav {
+    background-color: $custom-white;
+    padding: 0 1rem;
+    
+  }
+  .nav-list {
+    display: none;
+  }
+
+  .nav-icon {
+    display: none !important;
+  }
+  .burger-icon {
+    font-size: 2.5rem;
+    display: inline-block !important;
+    z-index: 999;
+  }
+}

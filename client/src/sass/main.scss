@@ -6,12 +6,19 @@
 @import './pages/manageProjects';
 
 //components
+
+//-ADMIN
 @import './components/logIn';
 @import './components/errorPage';
 @import './components/dashboard';
 @import './components/imageUploader';
 @import './components/projectForm';
 @import './components/projectList';
+
+//-FRONTEND
+@import './components/frontend/navbar';
+@import './components/frontend/mobileMenu';
+
 
 
 
