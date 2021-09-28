@@ -4,6 +4,7 @@ const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const Image = require("../models/image.model");
 const Project = require("../models/project.model");
+const Contact = require("../models/contact.model");
 
 const upload = async (req, res) => {
   console.log("private route!!!");
@@ -18,12 +19,12 @@ const uploadLandingPage = async (req, res) => {
     position = Number(position);
   }
 
-  if (Number.isNaN(position)) {
-    fs.unlinkSync(req.file.path);
-    throw new BadRequestError(
-      `The position field in ${name} must be a Number, please press on "Cancel" and try again`
-    );
-  }
+  // if (Number.isNaN(position)) {
+  //   fs.unlinkSync(req.file.path);
+  //   throw new BadRequestError(
+  //     `The position field in ${name} must be a Number, please press on "Cancel" and try again`
+  //   );
+  // }
 
   //ADD to cloudinary
   const result = await cloudinary.uploader.upload(req.file.path, {
@@ -33,8 +34,8 @@ const uploadLandingPage = async (req, res) => {
   //delete img from tmp folder
   fs.unlinkSync(req.file.path);
 
- const { secure_url, width, height } = result;
- let imgUrl = secure_url;
+  const { secure_url, width, height } = result;
+  let imgUrl = secure_url;
 
   let img = {
     name,
@@ -59,7 +60,6 @@ const getLandingPageImages = async (req, res) => {
 const uploadImageProjects = async (req, res) => {
   console.log(req.body);
   let { name, position, caption } = req.body;
- 
 
   if (position) {
     position = Number(position);
@@ -73,7 +73,7 @@ const uploadImageProjects = async (req, res) => {
   //delete img from tmp folder
   fs.unlinkSync(req.file.path);
 
-  const {secure_url,width,height} = result;
+  const { secure_url, width, height } = result;
   let imgUrl = secure_url;
 
   let img = {
@@ -85,25 +85,41 @@ const uploadImageProjects = async (req, res) => {
     height,
   };
 
-
   return res.status(StatusCodes.OK).json({ img });
 };
 
-
 const uploadProjects = async (req, res) => {
-  console.log(req.body);
   const project = await Project.create(req.body);
-
   res.status(StatusCodes.OK).json({ project });
 };
 const getAllProject = async (req, res) => {
   try {
-   const projects = await Project.find({});
-    res.status(StatusCodes.OK).json({ projects }); 
+    const projects = await Project.find({});
+    res.status(StatusCodes.OK).json({ projects });
   } catch (error) {
     throw new BadRequestError();
   }
-  
+};
+
+const uploadContact = async (req, res) => {
+  const contact = await Contact.create(req.body);
+  if (!contact) {
+    throw new BadRequestError("The please provide valid contcact details");
+  }
+  res.status(StatusCodes.OK).json({ contact });
+};
+
+const editContact = async (req, res) => {
+
+};
+
+const getContact = async (req, res) => {
+    try {
+      const contact = await Contact.find({});
+      res.status(StatusCodes.OK).json({ contact });
+    } catch (error) {
+      throw new BadRequestError();
+    }
 };
 
 module.exports = {
@@ -113,4 +129,7 @@ module.exports = {
   uploadProjects,
   uploadImageProjects,
   getAllProject,
+  uploadContact,
+  editContact,
+  getContact,
 };

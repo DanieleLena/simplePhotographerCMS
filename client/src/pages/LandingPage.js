@@ -6,7 +6,7 @@ const LandingPage = () => {
       <>
         <Navbar />
         <ImagesGallery />
-
+      
       </>
     );
 }
