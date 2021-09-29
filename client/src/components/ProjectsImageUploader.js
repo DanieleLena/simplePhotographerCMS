@@ -55,9 +55,9 @@ const ProjectsImageUploader = () => {
         },
       })
       .on("upload-success", (file, response) => {
-        console.log(response.body.img);
+        // console.log(response.body.img);
         newImageArray.push(response.body.img);
-        console.log(newImageArray);
+        // console.log(newImageArray);
         let newSuccess = `The image ${file.name} is added correctly.`;
         setResponse((oldArray) => [
           ...oldArray,
@@ -204,7 +204,6 @@ const ProjectsImageUploader = () => {
                   placeholder: "describe what the image is about",
                 },
               ]}
-              // assuming `this.uppy` contains an Uppy instance:
               uppy={uppy}
               locale={{
                 strings: {

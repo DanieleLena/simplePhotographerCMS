@@ -109,7 +109,29 @@ const uploadContact = async (req, res) => {
   res.status(StatusCodes.OK).json({ contact });
 };
 
+const uploadProfileImage = async (req,res) => {
+  //ADD to cloudinary
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    use_filename: true,
+    folder: "simplePhotographerCMS/contact",
+  });
+  //delete img from tmp folder
+  fs.unlinkSync(req.file.path);
+
+  const { name,secure_url, width, height } = result;
+  let imgUrl = secure_url;
+
+   
+
+    return res.status(StatusCodes.OK).json(imgUrl);
+}
+
 const editContact = async (req, res) => {
+  console.log(req.body)
+  const id = req.body._id;
+
+  const contact = await Contact.findByIdAndUpdate({_id: id}, req.body);
+  res.status(StatusCodes.OK).json({ contact });
 
 };
 
@@ -132,4 +154,5 @@ module.exports = {
   uploadContact,
   editContact,
   getContact,
+  uploadProfileImage,
 };
