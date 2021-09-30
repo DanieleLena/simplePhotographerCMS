@@ -100,6 +100,14 @@ const getAllProject = async (req, res) => {
     throw new BadRequestError();
   }
 };
+const getSingleProject = async (req, res) => {
+  const data = await Project.findById(req.params.id);
+  if (!data) {
+    throw new BadRequestError("Project not found.");
+  }
+
+  res.status(StatusCodes.OK).json({ data });
+};
 
 const uploadContact = async (req, res) => {
   const contact = await Contact.create(req.body);
@@ -109,7 +117,7 @@ const uploadContact = async (req, res) => {
   res.status(StatusCodes.OK).json({ contact });
 };
 
-const uploadProfileImage = async (req,res) => {
+const uploadProfileImage = async (req, res) => {
   //ADD to cloudinary
   const result = await cloudinary.uploader.upload(req.file.path, {
     use_filename: true,
@@ -118,30 +126,27 @@ const uploadProfileImage = async (req,res) => {
   //delete img from tmp folder
   fs.unlinkSync(req.file.path);
 
-  const { name,secure_url, width, height } = result;
+  const { name, secure_url, width, height } = result;
   let imgUrl = secure_url;
 
-   
-
-    return res.status(StatusCodes.OK).json(imgUrl);
-}
+  return res.status(StatusCodes.OK).json(imgUrl);
+};
 
 const editContact = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const id = req.body._id;
 
-  const contact = await Contact.findByIdAndUpdate({_id: id}, req.body);
+  const contact = await Contact.findByIdAndUpdate({ _id: id }, req.body);
   res.status(StatusCodes.OK).json({ contact });
-
 };
 
 const getContact = async (req, res) => {
-    try {
-      const contact = await Contact.find({});
-      res.status(StatusCodes.OK).json({ contact });
-    } catch (error) {
-      throw new BadRequestError();
-    }
+  try {
+    const contact = await Contact.find({});
+    res.status(StatusCodes.OK).json({ contact });
+  } catch (error) {
+    throw new BadRequestError();
+  }
 };
 
 module.exports = {
@@ -155,4 +160,5 @@ module.exports = {
   editContact,
   getContact,
   uploadProfileImage,
+  getSingleProject,
 };

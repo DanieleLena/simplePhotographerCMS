@@ -63,7 +63,7 @@ const Projects = () => {
                       <h2>{name}</h2>
                       <p>{subtitle}</p>
                     </div>
-                    <Link to={`/upload/${_id}`} >View Project</Link>
+                    <Link to={`/projects/${_id}`}></Link>
                   </figcaption>
                 </figure>
               );

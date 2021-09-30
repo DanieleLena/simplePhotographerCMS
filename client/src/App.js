@@ -11,7 +11,8 @@ import {
   ManageProjects,
   LandingPage,
   Projects,
-  Contact
+  Contact,
+  SingleProject
 } from "./pages";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -19,13 +20,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        
         <Route exact path="/">
           <LandingPage />
         </Route>
         <Route exact path="/projects">
           <Projects />
         </Route>
+        <Route exact path="/projects/:id" children={<SingleProject/>}></Route>
         <Route exact path="/contact">
           <Contact />
         </Route>

@@ -8,6 +8,7 @@ import ManageLayout from './ManageLayout';
 import LandingPage from "./LandingPage";
 import Projects from './Projects';
 import Contact from './Contact';
+import SingleProject from "./SingleProject";
 
 
 export {
@@ -20,5 +21,6 @@ export {
   ManageContact,
   LandingPage,
   Projects,
-  Contact
+  Contact,
+  SingleProject,
 };
