@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { url } from "../helpers";
-import { Navbar } from "../components";
+import { Navbar, Footer } from "../components";
 import axios from "axios";
+
 
 const SingleProject = () => {
     let { id } = useParams();
@@ -61,6 +62,7 @@ const SingleProject = () => {
           </>
         )}
       </section>
+      <Footer />
     </>
   );
 };

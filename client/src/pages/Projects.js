@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Navbar } from "../components";
+import { Navbar, Footer } from "../components";
 import { gsap } from "gsap";
 import axios from "axios";
 import { url } from "../helpers";
@@ -71,6 +71,7 @@ const Projects = () => {
           </div>
         )}
       </section>
+      <Footer />
     </>
   );
 };
