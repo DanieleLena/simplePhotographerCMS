@@ -36,7 +36,7 @@ const SingleProject = () => {
           <h2>Loading...</h2>
         ) : (
           <>
-            <div class="project-title">
+            <div className="project-title">
               <h1>{project.name}</h1>
               <p>{project.description}</p>
             </div>
