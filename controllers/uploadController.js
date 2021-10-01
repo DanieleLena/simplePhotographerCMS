@@ -6,10 +6,6 @@ const Image = require("../models/image.model");
 const Project = require("../models/project.model");
 const Contact = require("../models/contact.model");
 
-const upload = async (req, res) => {
-  console.log("private route!!!");
-  res.status(StatusCodes.OK).send("<h2>Sono nella private route</h2>");
-};
 //Save to cloudinary and Save in the DB, return Image object
 const uploadLandingPage = async (req, res) => {
   //access metafields from uppy
@@ -51,10 +47,6 @@ const uploadLandingPage = async (req, res) => {
 
   return res.status(StatusCodes.CREATED).json(image);
 };
-const getLandingPageImages = async (req, res) => {
-  const images = await Image.find({});
-  res.status(StatusCodes.OK).json({ images });
-};
 
 //Save to cloudinary and Return an Image object, DO NOT manipulate the DB
 const uploadImageProjects = async (req, res) => {
@@ -92,22 +84,6 @@ const uploadProjects = async (req, res) => {
   const project = await Project.create(req.body);
   res.status(StatusCodes.OK).json({ project });
 };
-const getAllProject = async (req, res) => {
-  try {
-    const projects = await Project.find({});
-    res.status(StatusCodes.OK).json({ projects });
-  } catch (error) {
-    throw new BadRequestError();
-  }
-};
-const getSingleProject = async (req, res) => {
-  const data = await Project.findById(req.params.id);
-  if (!data) {
-    throw new BadRequestError("Project not found.");
-  }
-
-  res.status(StatusCodes.OK).json({ data });
-};
 
 const uploadContact = async (req, res) => {
   const contact = await Contact.create(req.body);
@@ -140,25 +116,11 @@ const editContact = async (req, res) => {
   res.status(StatusCodes.OK).json({ contact });
 };
 
-const getContact = async (req, res) => {
-  try {
-    const contact = await Contact.find({});
-    res.status(StatusCodes.OK).json({ contact });
-  } catch (error) {
-    throw new BadRequestError();
-  }
-};
-
 module.exports = {
-  upload,
   uploadLandingPage,
-  getLandingPageImages,
   uploadProjects,
   uploadImageProjects,
-  getAllProject,
   uploadContact,
   editContact,
-  getContact,
   uploadProfileImage,
-  getSingleProject,
 };

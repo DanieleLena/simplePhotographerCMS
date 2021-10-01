@@ -12,7 +12,7 @@ const Contact = () => {
       setIsLoading(true);
       const {
         data: { contact },
-      } = await axios.get(`${url}/upload/contact`);
+      } = await axios.get(`${url}/get/contact`);
       setContact(contact[0]);
       setIsLoading(false);
     } catch (error) {
@@ -42,14 +42,7 @@ const Contact = () => {
               <article className="about-text">
                 <h1>Hi, I am {contact.name}</h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae amet repellat doloribus veniam expedita harum
-                  consequuntur, aliquam nulla dolores perspiciatis odit rem
-                  omnis cum dicta quis adipisci sequi animi doloremque officiis
-                  ipsam laboriosam et rerum! Recusandae asperiores repudiandae
-                  odio iure! Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Recusandae amet repellat doloribus veniam expedita harum
-                  consequuntur, aliquam nulla
+                  {contact.description}
                 </p>
               </article>
             </div>

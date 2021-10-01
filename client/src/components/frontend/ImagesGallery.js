@@ -8,7 +8,7 @@ const ImagesGallery = () => {
 
   const getImages = async () => {
     setIsLoading(true);
-    const result = await axios.get(`${url}/upload/landingPage`);
+    const result = await axios.get(`${url}/get/landingPage`);
     const newImages = result.data.images;
     setImages(newImages);
   };

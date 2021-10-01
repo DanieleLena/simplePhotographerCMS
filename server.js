@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const authRouter = require("./routes/authRoute");
 const uploadRouter = require("./routes/uploadRoute");
+const getRouter = require("./routes/getRoute");
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -31,6 +32,7 @@ app.use(cors());
 
 //routes
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/get",getRouter);
 app.use("/api/v1/upload", authenticateUser,multerMiddleware, uploadRouter);
 
 app.use(notFoundMiddleware);

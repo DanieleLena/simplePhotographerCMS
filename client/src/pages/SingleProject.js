@@ -13,7 +13,7 @@ const SingleProject = () => {
   const fecthSingleProjects = async () => {
     try {
       setIsLoading(true);
-      const {data} = await axios.get(`${url}/upload/projects/${id}`);
+      const {data} = await axios.get(`${url}/get/projects/${id}`);
       setProject(data.data);
       console.log(project);
       setIsLoading(false)

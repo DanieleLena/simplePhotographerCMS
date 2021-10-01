@@ -15,7 +15,7 @@ const Projects = () => {
   const getProjects = async () => {
       setIsLoading(true);
     try {
-      const result = await axios.get(`${url}/upload/projects`);
+      const result = await axios.get(`${url}/get/projects`);
       const projectList = result.data.projects;
       setProjects(projectList);
     } catch (error) {
