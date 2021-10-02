@@ -5,7 +5,8 @@ import ProjectList from './ProjectList';
 import Navbar from "./frontend/Navbar";
 import MobileMenu from "./frontend/MobileMenu";
 import ImagesGallery from './frontend/ImagesGallery';
-import Footer from './frontend/Footer'
+import Footer from './frontend/Footer';
+import Loading from "./frontend/Loading";
 
 
 export {
@@ -17,4 +18,5 @@ export {
   MobileMenu,
   ImagesGallery,
   Footer,
+  Loading,
 };

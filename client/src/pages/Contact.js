@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer,Loading } from "../components";
 import axios from "axios";
 import { url } from "../helpers";
 
@@ -17,7 +17,7 @@ const Contact = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
@@ -31,30 +31,26 @@ const Contact = () => {
     <>
       <Navbar />
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loading />
       ) : (
         <>
           <section className="about-section">
-            <div className="about-description">
-              <div className="about-image">
-                <img src={contact.imgUrl} width="400px" alt={contact.name} />
+            {contact && (
+              <div className="about-description">
+                <div className="about-image">
+                  <img src={contact.imgUrl} width="400px" alt={contact.name} />
+                </div>
+                <article className="about-text">
+                  <h1>Hi, I am {contact.name}</h1>
+                  <p>{contact.description}</p>
+                </article>
               </div>
-              <article className="about-text">
-                <h1>Hi, I am {contact.name}</h1>
-                <p>
-                  {contact.description}
-                </p>
-              </article>
-            </div>
+            )}
           </section>
 
           <section className="form-section">
             <h1>Contact</h1>
-            <form
-              className="contact-form"
-              action="#"
-              method="POST"
-            >
+            <form className="contact-form" action="#" method="POST">
               <label htmlFor="name">Name:</label>
               <input name="name" type="text" required />
               <label htmlFor="email">Email:</label>

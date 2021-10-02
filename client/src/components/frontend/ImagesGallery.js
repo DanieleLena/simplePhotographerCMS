@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { url } from "../../helpers";
+import {Loading} from "../../components";
 
 const ImagesGallery = () => {
   const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getImages = async () => {
     setIsLoading(true);
@@ -22,9 +23,10 @@ const ImagesGallery = () => {
   }, [images]);
 
   return (
-    <main className="main-container" style={{marginTop: "20rem"}}>
+    <main className="main-container" >
       {isLoading ? (
-        <div>LOADING </div>
+        
+        <Loading />
       ) : (
         <div>
           {images.map((image) => {
