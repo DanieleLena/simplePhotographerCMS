@@ -33,11 +33,24 @@ align-items: center;
 }
 
 .btn-contact-container{
+    position: absolute;
     width: 100%;
     text-align: center;
     margin-top: 2rem;
+    top:90%;
+    left: 0%;
 }
 
 .btn-edit {
     width: 250px;
+}
+
+@media (max-width: $mq-small) {
+    .contact-flex-container {
+   flex-direction: column;
+}
+.btn-contact-container{
+    position: static;
+    
+}
 }

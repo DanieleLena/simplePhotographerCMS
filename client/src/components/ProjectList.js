@@ -14,7 +14,7 @@ const ProjectList = () => {
   const fetchProjects = async () => {
     setIsLoading(true);
 
-    const {data} = await axios.get(`${url}/upload/projects`);
+    const {data} = await axios.get(`${url}/get/projects`);
     let newProjectList = data.projects;
      newProjectList = newProjectList.map((project) => {
       return { ...project,isOpen: false}
@@ -55,16 +55,16 @@ return (
       ) : (
         <div className="list-container">
           <ul id="list">
-            {projectsList.map((project) => {
+            {projectsList.map((project,index) => {
               const { name, subtitle, description, imageArray, _id, isOpen } =
                 project;
 
               return (
-                <li className={isOpen && "li-active"} >
-                  <span class="caret" id={_id} onClick={toggleNested}>
+                <li className={isOpen ? "li-active" : undefined} key={index}>
+                  <span className="caret" id={_id} onClick={toggleNested}>
                     {name}
                   </span>
-                  <ul class={isOpen && "open"}>
+                  <ul className={isOpen ? "open" : undefined}>
                     <p>
                       <strong>Subtitle:</strong> {subtitle}
                     </p>
@@ -76,8 +76,8 @@ return (
                       <strong>Image List:</strong>
                     </p>
 
-                    {imageArray.map((img) => {
-                      return <li className="nested-item">{img.name}<span><ImCross/></span></li>;
+                    {imageArray.map((img,index) => {
+                      return <li className="nested-item" key={index}>{img.name}<span><ImCross/></span></li>;
                     })}
                   </ul>
                 </li>

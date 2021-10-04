@@ -25,13 +25,13 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-bottom">
-          <a href="index.html">
+          <Link to="/">
             <h2>
               Simple
               <br />
               Photographer
             </h2>
-          </a>
+          </Link>
           <div className="icons-container">
             <div className="icon">
               <a href="https://www.instagram.com" target="_blank">
