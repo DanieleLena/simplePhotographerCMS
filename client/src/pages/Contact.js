@@ -34,7 +34,7 @@ const Contact = () => {
         <Loading />
       ) : (
         <>
-          <section className="about-section">
+          <section className="about-section" data-testid="contactTest">
             {contact && (
               <div className="about-description">
                 <div className="about-image">

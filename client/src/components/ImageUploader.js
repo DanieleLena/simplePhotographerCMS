@@ -6,16 +6,17 @@ import XHRUpload from "@uppy/xhr-upload";
 import { useUppy, Dashboard } from "@uppy/react";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
-import {url} from '../helpers'
+import { url } from "../helpers";
 
 function ImageUploader() {
   const [response, setResponse] = useState([]);
 
-
   //get the user token from the local storage
   const getCurrentUserToken = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const { token } = user;
+   
+      const { token } = user;
+   
     return token;
   };
 
@@ -30,7 +31,7 @@ function ImageUploader() {
         fieldName: "photo",
         formData: true,
         headers: headers,
-        
+
         getResponseError(responseText) {
           let newError = JSON.parse(responseText).msg;
           setResponse((oldArray) => [
@@ -81,7 +82,7 @@ function ImageUploader() {
           },
         }}
       />
-      <div className="response-box">
+      <div className="response-box" data-testid="imageUploader">
         {response &&
           response.map((res, index) => {
             return (

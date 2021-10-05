@@ -1,5 +1,3 @@
-import e from 'cors'
-import { set } from 'mongoose'
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from "axios";
