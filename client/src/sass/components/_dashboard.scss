@@ -39,8 +39,10 @@
     
   }
   .logout{
+    width:130px;
     cursor: pointer;
     text-decoration: underline;
+    text-align: start;
 
     &:hover {
       color: rgba(0, 0, 0, 0.555);
@@ -134,6 +136,9 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    .logout{
+      text-align: center;
+    }
 
     h1{
       order: 1;

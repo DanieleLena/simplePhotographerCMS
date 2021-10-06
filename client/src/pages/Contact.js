@@ -41,7 +41,7 @@ const Contact = () => {
                   <img src={contact.imgUrl} width="400px" alt={contact.name} />
                 </div>
                 <article className="about-text">
-                  <h1>Hi, I am {contact.name}</h1>
+                  <h1 data-testid="name-test">Hi, I am {contact.name}</h1>
                   <p>{contact.description}</p>
                 </article>
               </div>

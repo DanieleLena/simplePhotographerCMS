@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useState,useEffect } from 'react';
 import {url} from '../helpers'
 import LoadingSpin from "react-loading-spin";
-import {ImCross} from 'react-icons/im'
+
+import {BiTrash} from "react-icons/bi"
+ 
 
 
 
@@ -23,11 +25,20 @@ const ProjectList = () => {
      setIsLoading(false);
   }
 
-
+ const deletePopUp = (project_id, image_id) => {
+   
+ }; 
+const deleteSingleProjectImage = async (project_id, image_id) => {
+  const {data} = await axios.delete(`${url}/upload/projects/image/delete/${project_id}/${image_id}`);
+  fetchProjects();  
+};
 
     useEffect(()=> {
   fetchProjects();
-    },[])
+    },[]);
+    // useEffect(()=> {
+    //   setIsLoading(false);
+    // },[])
 
   const toggleNested = (e) => {
     const id = e.target.id;
@@ -56,12 +67,12 @@ return (
         <div className="list-container">
           <ul id="list">
             {projectsList.map((project,index) => {
-              const { name, subtitle, description, imageArray, _id, isOpen } =
+              const { name, subtitle, description, imageArray, _id : project_id, isOpen } =
                 project;
 
               return (
                 <li className={isOpen ? "li-active" : undefined} key={index}>
-                  <span className="caret" id={_id} onClick={toggleNested}>
+                  <span className="caret" id={project_id} onClick={toggleNested}>
                     {name}
                   </span>
                   <ul className={isOpen ? "open" : undefined}>
@@ -77,7 +88,14 @@ return (
                     </p>
 
                     {imageArray.map((img,index) => {
-                      return <li className="nested-item" key={index}>{img.name}<span><ImCross/></span></li>;
+                      return (
+                        <li className="nested-item" key={index}>
+                          <span className="remove-span" onClick={()=> deleteSingleProjectImage(project_id,img._id)}>
+                            <BiTrash />
+                          </span>
+                          {img.name}
+                        </li>
+                      );
                     })}
                   </ul>
                 </li>

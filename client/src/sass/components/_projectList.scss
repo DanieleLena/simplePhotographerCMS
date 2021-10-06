@@ -79,7 +79,7 @@ margin-bottom: .5rem;
 }
 .nested-item{
     font-size: 1rem !important;
-    padding-left: 11rem;
+    margin-left: 10rem;
     margin-bottom:.5rem !important;
     width: 100%;
 
@@ -87,17 +87,19 @@ margin-bottom: .5rem;
             display: none;
         }
     span {
-        color:red;
-        visibility: hidden;
+        
+        // visibility: hidden;
         cursor: pointer;
-        position: relative;
+        // position: relative;
         right: 1px;
+        font-size: 1.5rem;
+        margin-right: 1rem;
     }
 
     &:hover {
         background-color: rgb(209, 204, 204)!important;
         span {
-            visibility: visible;
+            color: red !important;
     }
     }
 }

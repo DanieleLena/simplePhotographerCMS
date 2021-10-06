@@ -50,7 +50,6 @@ const uploadLandingPage = async (req, res) => {
 
 //Save to cloudinary and Return an Image object, DO NOT manipulate the DB
 const uploadImageProjects = async (req, res) => {
-  console.log(req.body);
   let { name, position, caption } = req.body;
 
   if (position) {
@@ -78,6 +77,25 @@ const uploadImageProjects = async (req, res) => {
   };
 
   return res.status(StatusCodes.OK).json({ img });
+};
+
+const deleteImageProjects = async (req, res) => {
+  const { projectId, imageId } = req.params;
+//find the project, _id is of type Object so convert in string to compare it with the imageId
+  const project = await Project.findById(projectId);
+  const newImageArray = project.imageArray.filter((img) => {
+    const { _id } = img;
+    const id = _id.toString();
+    return id !== imageId;
+  });
+
+  project.imageArray = newImageArray;
+
+  const newProject = await Project.findByIdAndUpdate(
+    { _id: projectId },
+    project
+  );
+  res.status(StatusCodes.OK).json({ newProject });
 };
 
 const uploadProjects = async (req, res) => {
@@ -123,4 +141,5 @@ module.exports = {
   uploadContact,
   editContact,
   uploadProfileImage,
+  deleteImageProjects,
 };

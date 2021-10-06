@@ -7,12 +7,19 @@ const {
   uploadContact,
   editContact,
   uploadProfileImage,
+  deleteImageProjects,
 } = require("../controllers/uploadController");
 
 
 router.route("/landingPage").post(uploadLandingPage);
 router.route("/projects").post(uploadProjects)
-router.route("/projects/image").post(uploadImageProjects);
+router
+  .route("/projects/image")
+  .post(uploadImageProjects)
+
+router
+  .route("/projects/image/delete/:projectId/:imageId")
+  .delete(deleteImageProjects);
 router.route("/contact").post(uploadContact).put(editContact);
 router.route("/contact/profileImage").post(uploadProfileImage);
 
