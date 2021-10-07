@@ -3,7 +3,7 @@
   min-height: 80vh;
   padding: 1.5rem;
   height: auto;
-  position: relative;
+//   position: relative;
   box-shadow: $neuromorphic;
   h2 {
     margin-bottom: 2rem;
@@ -14,8 +14,7 @@
     padding-top: 300px;
   }
 }
-.list-container {
-}
+
 
 #list {
   li {
@@ -102,9 +101,16 @@
     }
   }
 }
+// @media (max-width: $mq-medium) {
+//   .projects-list {
+//     position: relative;
+//     top: 0;
+//   }
+// }
 
 @media (max-width: $mq-small) {
   .projects-list {
     width: 100%;
+    position: relative;
   }
 }

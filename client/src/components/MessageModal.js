@@ -1,6 +1,6 @@
 import React,{useEffect,useRef,useCallback} from "react";
 
-const MessageModal = ({closeModal,isModalOpen,setDeleteConfirm}) => {
+const MessageModal = ({closeModal,isModalOpen,setDeleteConfirm,projectName}) => {
 
   // Close the modal when press 'Esc' OR outside the modal ==============================
   const modalRef = useRef();
@@ -24,9 +24,9 @@ const MessageModal = ({closeModal,isModalOpen,setDeleteConfirm}) => {
   }, [keyEsc]);
 
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (confirm) => {
     closeModal(false);
-    setDeleteConfirm(true);
+    setDeleteConfirm(confirm);
   }
 
 
@@ -35,18 +35,25 @@ const MessageModal = ({closeModal,isModalOpen,setDeleteConfirm}) => {
     <div
       className="message-cover"
       ref={modalRef}
-      onClick={(e) =>closeModalByCover(e)}
+      onClick={(e) => closeModalByCover(e)}
     >
       <div className="message-modal">
-        <h2>Warning</h2>
+        <h2>Confirm Deletion</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-          exercitationem eveniet quae veniam, quos excepturi! Dignissimos
-          eligendi a odio id repudiandae doloribus nulla architecto facilis
-          cumque voluptatem quo, ipsum laborum!
+          Are you sure you want to delete Project <strong>{projectName}</strong>
+          ? <br></br> This action cannot be undone.
         </p>
-        <button onClick={() => handleCloseModal()}>Confirm</button>
-        <button>Discard</button>
+        <div className="message-btn-container">
+          <button
+            className="custom-btn btn-2 btn-discard"
+            onClick={() => handleCloseModal(false)}
+          >
+            Discard
+          </button>
+          <button className="custom-btn btn-2 btn-delete" onClick={() => handleCloseModal(true)}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -48,10 +48,9 @@ const ProjectList = () => {
     setProjectsList(projectToToggle);
   };
 
-  const handleDeleteProject = (project_id) => {
+  const handleDeleteProject = (name,project_id) => {
     setIsModalOpen(true);
-    setSelectedProject(project_id);
-    console.log(project_id);
+    setSelectedProject({name,project_id});
   };
   useEffect(() => {
     if (deleteConfirm) {
@@ -63,7 +62,7 @@ const ProjectList = () => {
   const deleteProject = async () => {
     try {
       const result = await axios.delete(
-        `${url}/upload/projects/delete/${selectedProject}`
+        `${url}/upload/projects/delete/${selectedProject.project_id}`
       );
       fetchProjects();
     } catch (error) {
@@ -104,7 +103,7 @@ const ProjectList = () => {
                       {name}
                       <BiTrash
                         className="caret-icon"
-                        onClick={() => handleDeleteProject(project_id)}
+                        onClick={() => handleDeleteProject(name,project_id)}
                       />
                     </span>
 
@@ -141,16 +140,18 @@ const ProjectList = () => {
               })}
             </ul>
           </div>
-        )}
-      </div>
-      {isModalOpen && (
+        )} 
+         {isModalOpen && (
         <MessageModal
           closeModal={setIsModalOpen}
           isModalOpen={isModalOpen}
           deleteConfirm={deleteConfirm}
           setDeleteConfirm={setDeleteConfirm}
+          projectName={selectedProject.name}
         />
       )}
+      </div>
+    
     </>
   );
 };
