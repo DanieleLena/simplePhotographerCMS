@@ -3,39 +3,26 @@
 @import "typography";
 
 //pages
-@import './pages/manageProjects';
-@import './pages/manageContact';
-
+@import "./pages/manageProjects";
+@import "./pages/manageContact";
 
 //components
 
 //-ADMIN
-@import './components/logIn';
-@import './components/errorPage';
-@import './components/dashboard';
-@import './components/imageUploader';
-@import './components/projectForm';
-@import './components/projectList';
+@import "./components/logIn";
+@import "./components/errorPage";
+@import "./components/dashboard";
+@import "./components/imageUploader";
+@import "./components/projectForm";
+@import "./components/projectList";
+@import "./components/messageModal";
 
 //-FRONTEND
-@import './components/frontend/navbar';
-@import './components/frontend/mobileMenu';
-@import './components/frontend/imagesGallery';
-@import './components/frontend/projects';
-@import './components/frontend/singleProject';
-@import './components/frontend/about';
-@import './components/frontend/footer';
-@import './components/frontend/loading';
-
-
-
-
-
-
-
-
-
-
-
-
-
+@import "./components/frontend/navbar";
+@import "./components/frontend/mobileMenu";
+@import "./components/frontend/imagesGallery";
+@import "./components/frontend/projects";
+@import "./components/frontend/singleProject";
+@import "./components/frontend/about";
+@import "./components/frontend/footer";
+@import "./components/frontend/loading";

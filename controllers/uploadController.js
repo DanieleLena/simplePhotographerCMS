@@ -78,7 +78,12 @@ const uploadImageProjects = async (req, res) => {
 
   return res.status(StatusCodes.OK).json({ img });
 };
-
+const deleteProject = async (req,res) => {
+  const {id} = req.params;
+  const result = await Project.findByIdAndDelete(id);
+  res.status(StatusCodes.OK).json({result});
+}
+ 
 const deleteImageProjects = async (req, res) => {
   const { projectId, imageId } = req.params;
 //find the project, _id is of type Object so convert in string to compare it with the imageId
@@ -142,4 +147,5 @@ module.exports = {
   editContact,
   uploadProfileImage,
   deleteImageProjects,
+  deleteProject,
 };
