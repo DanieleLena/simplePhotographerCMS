@@ -19,7 +19,6 @@ const Dashboard = ({ isLogIn, logout }) => {
         <div className="dashboard-title dashboard-title-buttons ">
           <h3 className="logout" onClick={handleLogout}>
             Logout
-          
           </h3>
 
           <div>
@@ -44,7 +43,7 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/landignpage.jpg"></img>
+              <img src="/assets/simplePhotographerCMS-thumbnail.jpg"></img>
             </div>
           </div>
           {/* Projects card  =======================================================*/}
@@ -60,7 +59,7 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/projects-card.jpg"></img>
+              <img src="/assets/simplePhotographerCMS-projects.jpg"></img>
             </div>
           </div>
           {/* layouts card  =======================================================*/}
@@ -94,7 +93,7 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/landignpage.jpg"></img>
+              <img src="/assets/simplePhotographerCMS-contact.jpg"></img>
             </div>
           </div>
         </div>

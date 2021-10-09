@@ -29,6 +29,7 @@ const MessageModal = ({closeModal,isModalOpen,setDeleteConfirm,projectName}) => 
     setDeleteConfirm(confirm);
   }
 
+ 
 
 
   return (

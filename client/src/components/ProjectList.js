@@ -6,6 +6,8 @@ import LoadingSpin from "react-loading-spin";
 import { MessageModal } from "./";
 
 import { BiTrash } from "react-icons/bi";
+import { BiEditAlt } from "react-icons/bi";
+
 
 const ProjectList = () => {
   const [projectsList, setProjectsList] = useState([]);
@@ -48,13 +50,12 @@ const ProjectList = () => {
     setProjectsList(projectToToggle);
   };
 
-  const handleDeleteProject = (name,project_id) => {
+  const handleDeleteProject = (name, project_id) => {
     setIsModalOpen(true);
-    setSelectedProject({name,project_id});
+    setSelectedProject({ name, project_id });
   };
   useEffect(() => {
     if (deleteConfirm) {
-      console.log(`CANCELLARE ${selectedProject}`);
       deleteProject();
     }
   }, [deleteConfirm]);
@@ -103,13 +104,13 @@ const ProjectList = () => {
                       {name}
                       <BiTrash
                         className="caret-icon"
-                        onClick={() => handleDeleteProject(name,project_id)}
+                        onClick={() => handleDeleteProject(name, project_id)}
                       />
                     </span>
 
                     <ul className={isOpen ? "open" : undefined}>
                       <p>
-                        <strong>Subtitle:</strong> {subtitle}
+                        <BiEditAlt/><strong>Subtitle:</strong> {subtitle}
                       </p>
                       <p>
                         <strong>Description:</strong>
@@ -140,18 +141,17 @@ const ProjectList = () => {
               })}
             </ul>
           </div>
-        )} 
-         {isModalOpen && (
-        <MessageModal
-          closeModal={setIsModalOpen}
-          isModalOpen={isModalOpen}
-          deleteConfirm={deleteConfirm}
-          setDeleteConfirm={setDeleteConfirm}
-          projectName={selectedProject.name}
-        />
-      )}
+        )}
+        {isModalOpen && (
+          <MessageModal
+            closeModal={setIsModalOpen}
+            isModalOpen={isModalOpen}
+            deleteConfirm={deleteConfirm}
+            setDeleteConfirm={setDeleteConfirm}
+            projectName={selectedProject.name}
+          />
+        )}
       </div>
-    
     </>
   );
 };
