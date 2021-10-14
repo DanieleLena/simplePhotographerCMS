@@ -33,11 +33,12 @@ const ProjectList = () => {
       `${url}/upload/projects/image/delete/${project_id}/${image_id}`
     );
     fetchProjects();
+    return data;
   };
 
   useEffect(() => {
     fetchProjects();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleNested = (e) => {
     const id = e.target.id;
@@ -58,19 +59,21 @@ const ProjectList = () => {
     if (deleteConfirm) {
       deleteProject();
     }
-  }, [deleteConfirm]);
+  }, [deleteConfirm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const deleteProject = async () => {
     try {
       const result = await axios.delete(
         `${url}/upload/projects/delete/${selectedProject.project_id}`
       );
+      console.log(result);
       fetchProjects();
     } catch (error) {
       console.log("There is no project with this id");
     }
 
     setDeleteConfirm(false);
+    
   };
 
   return (
@@ -110,7 +113,8 @@ const ProjectList = () => {
 
                     <ul className={isOpen ? "open" : undefined}>
                       <p>
-                        <BiEditAlt/><strong>Subtitle:</strong> {subtitle}
+                        <BiEditAlt />
+                        <strong>Subtitle:</strong> {subtitle}
                       </p>
                       <p>
                         <strong>Description:</strong>

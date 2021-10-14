@@ -1,5 +1,5 @@
 import Uppy from "@uppy/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import XHRUpload from "@uppy/xhr-upload";
 import axios from "axios";
@@ -92,6 +92,8 @@ const ProjectsImageUploader = () => {
         `${url}/upload/projects`,
         newProject
       );
+        console.log(resultProject);
+
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -107,6 +109,7 @@ const ProjectsImageUploader = () => {
     setIsSuccess(false);
   };
 
+
   return (
     <>
       <form className="project-form" onSubmit={handleUpload}>
@@ -119,8 +122,14 @@ const ProjectsImageUploader = () => {
 
         {isSuccess ? (
           <div>
-            <h3>Your projects is succesfully upload! Check it live or manage it in the "List of Projects section"</h3>
-            <button className="custom-btn another-btn"  onClick={() => addAnotherProject()}>
+            <h3>
+              Your projects is succesfully upload! Check it live or manage it in
+              the "List of Projects section"
+            </h3>
+            <button
+              className="custom-btn another-btn"
+              onClick={() => addAnotherProject()}
+            >
               Add new Project
             </button>
           </div>
@@ -177,7 +186,7 @@ const ProjectsImageUploader = () => {
               width="100%"
               height="400px"
               note="Images up to 200×200px"
-              hideUploadButton="false"
+              hideUploadButton= {true}
               metaFields={[
                 { id: "name", name: "Name", placeholder: "file name" },
                 {

@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { LOGOUT } from "../actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
-import { ImageUploader, ManageCard } from "../components";
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ isLogIn, logout }) => {
@@ -43,7 +42,10 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/simplePhotographerCMS-thumbnail.jpg"></img>
+              <img
+                src="/assets/simplePhotographerCMS-thumbnail.jpg"
+                alt="manage landing page"
+              ></img>
             </div>
           </div>
           {/* Projects card  =======================================================*/}
@@ -59,7 +61,10 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/simplePhotographerCMS-projects.jpg"></img>
+              <img
+                src="/assets/simplePhotographerCMS-projects.jpg"
+                alt="manage projects"
+              ></img>
             </div>
           </div>
           {/* layouts card  =======================================================*/}
@@ -76,7 +81,7 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/landignpage.jpg"></img>
+              <img src="/assets/landignpage.jpg" alt="manage layout"></img>
             </div>
           </div>
           {/* Contacts card  =======================================================*/}
@@ -93,11 +98,13 @@ const Dashboard = ({ isLogIn, logout }) => {
               </Link>
             </div>
             <div className="manage-card-image">
-              <img src="/assets/simplePhotographerCMS-contact.jpg"></img>
+              <img
+                src="/assets/simplePhotographerCMS-contact.jpg"
+                alt="manage contact page"
+              ></img>
             </div>
           </div>
         </div>
-        {/* <ImageUploader /> */}
       </div>
     </section>
   );

@@ -34,7 +34,11 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="nav-icon-container">
-            <a href="#" target="_blank">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="nav-icon fab fa-instagram">
                 <AiOutlineInstagram />
               </i>

@@ -1,0 +1,30 @@
+
+.description-landing-page {
+  width: 600px;
+  background-color: $white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  border: 1px solid rgba(0, 0, 0, 0.575);
+  margin: auto;
+  margin-top: 2rem;
+  padding: 2rem;
+  h2 {
+      margin-bottom: 2rem;
+  }
+  p {
+      margin-bottom: 1.5rem;
+  }
+
+  .description-btn-container {
+      h3 {
+          margin-bottom: .5rem;
+      }
+      text-align: center;
+  }
+}
+
+@media (max-width: $mq-medium) {
+    .description-landing-page {
+        width: 90%;
+    }
+}

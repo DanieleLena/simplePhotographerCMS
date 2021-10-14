@@ -29,15 +29,14 @@ const ImagesGallery = () => {
         <Loading />
       ) : (
         <div>
-          {images.map((image) => {
-            console.log(image);
+          {images.map((image,index) => {
             const { name, width, height,imgUrl } = image;
             let isVertical = false;
             if(width <= height) {
                 isVertical = true;
             }
             return (
-              <div className={isVertical ? "images-row vertical-solo" : "images-row"}>
+              <div  key={index} className={isVertical ? "images-row vertical-solo" : "images-row"}>
                <img src={imgUrl} alt={name} />
               </div>
             );

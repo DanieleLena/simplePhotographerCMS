@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Footer } from "../components";
 import { gsap } from "gsap";
 import axios from "axios";
@@ -13,7 +13,7 @@ const Projects = () => {
   const projectDomNodes = [];
 
   const getProjects = async () => {
-      setIsLoading(true);
+    setIsLoading(true);
     try {
       const result = await axios.get(`${url}/get/projects`);
       const projectList = result.data.projects;
@@ -29,14 +29,16 @@ const Projects = () => {
 
   //gsap animation
   useEffect(() => {
-      setIsLoading(false);
+    setIsLoading(false);
+    if(projectDomNodes.length > 0) {
     const tl = gsap.timeline({ paused: true });
     tl.to(projectDomNodes, {
       opacity: 1,
       duration: 2,
       stagger: 0.2,
-    }).play();
-  }, [projects]);
+    }).play(); 
+   }
+  }, [projects]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -48,7 +50,7 @@ const Projects = () => {
         ) : (
           <div className="grid">
             {projects.map((project, index) => {
-              const { _id,name, subtitle, imageArray } = project;
+              const { _id, name, subtitle, imageArray } = project;
 
               return (
                 <figure

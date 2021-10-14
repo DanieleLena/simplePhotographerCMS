@@ -6,28 +6,26 @@ import axios from "axios";
 
 
 const SingleProject = () => {
-    let { id } = useParams();
-    const [project,setProject] = useState({});
-    const [isLoading,setIsLoading] = useState(true);
-
-  const fecthSingleProjects = async () => {
-    try {
-      setIsLoading(true);
-      const {data} = await axios.get(`${url}/get/projects/${id}`);
-      setProject(data.data);
-      console.log(project);
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-  };
+  let { id } = useParams();
+  const [project, setProject] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const fecthSingleProjects = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(`${url}/get/projects/${id}`);
+        setProject(data.data);
+        console.log(project);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    };
     fecthSingleProjects();
-  }, []);
-  
- 
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <Navbar />
@@ -41,8 +39,7 @@ const SingleProject = () => {
               <p>{project.description}</p>
             </div>
             <div>
-              {project.imageArray.map((image) => {
-                console.log(image);
+              {project.imageArray.map((image, index) => {
                 const { name, width, height, imgUrl } = image;
                 let isVertical = false;
                 if (width <= height) {
@@ -50,6 +47,7 @@ const SingleProject = () => {
                 }
                 return (
                   <div
+                    key={index}
                     className={
                       isVertical ? "images-row vertical-solo" : "images-row"
                     }

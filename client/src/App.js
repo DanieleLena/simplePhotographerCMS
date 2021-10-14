@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./sass/main.scss";
-import { SignInForm, Navbar } from "./components";
+import { SignInForm } from "./components";
 import {
   ErrorPage,
   PrivateRoute,

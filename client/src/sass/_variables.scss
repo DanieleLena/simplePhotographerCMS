@@ -16,7 +16,6 @@
 // COLORS
 $white: white;
 $custom-black: #0D0D0D;
-$custom-white:white;
 $hover-color:rgba(0, 0, 0, 0.808);
 $neuromorphic: 0 0 0 #b5b0b0,  0 0 0 #ffffff,inset -0.047em 0.08em 0.132em rgba(0,0,0,0.5),inset 0.047em -0.05em 0.132em rgba(255,255,255,0.8);
 
@@ -146,3 +145,21 @@ background-image: linear-gradient(315deg, #f0ecfc 0%,  rgb(85, 162, 214) 74%);
   width: 100%;
 }
   
+
+.btn-FE {
+  border: 1px solid black;
+  padding: .8rem 1.3rem;
+  font-family: inherit;
+  font-size: 2rem;
+  background-color: $white;
+  cursor: pointer;
+  transition: background-color .3s linear;
+
+
+  &:hover {
+    background-color: $custom-black;
+    color: $white;
+  }
+
+
+}

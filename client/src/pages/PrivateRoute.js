@@ -5,10 +5,16 @@ import { Route, Redirect } from 'react-router-dom';
 const PrivateRoute = ({children, ...rest}) => {
   // this ...rest grab all the parameters in App.js,  on the PrivateRoute component
 
+  // eslint-disable-next-line
   const [user, setUser] = useState(localStorage.getItem("user"));
-  
-  return <Route {...rest} render={()=> {
-    return user ? children : <Redirect to="/login"></Redirect>;
-  }}></Route>
+
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        return user ? children : <Redirect to="/login"></Redirect>;
+      }}
+    ></Route>
+  );
 };
 export default PrivateRoute;

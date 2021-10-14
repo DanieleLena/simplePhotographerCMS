@@ -34,7 +34,11 @@ const Footer = () => {
           </Link>
           <div className="icons-container">
             <div className="icon">
-              <a href="https://www.instagram.com" target="_blank">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <AiOutlineInstagram />
               </a>
             </div>

@@ -8,6 +8,7 @@ import ImagesGallery from "./frontend/ImagesGallery";
 import Footer from "./frontend/Footer";
 import Loading from "./frontend/Loading";
 import MessageModal from "./MessageModal";
+import DescriptionLandingPage from "./frontend/DescriptionLandingpage";
 
 export {
   SignInForm,
@@ -20,4 +21,5 @@ export {
   Footer,
   Loading,
   MessageModal,
+  DescriptionLandingPage,
 };

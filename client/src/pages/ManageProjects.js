@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import { ImageUploader } from "../components";
+import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-import { BiEditAlt } from "react-icons/bi";
-import axios from "axios";
+// import { BiEditAlt } from "react-icons/bi";
 import { ProjectsImageUploader, ProjectList } from "../components";
 const ManageProjects = () => {
  
@@ -30,7 +28,6 @@ const ManageProjects = () => {
           <ProjectsImageUploader />
         </div>
 
-        {/* <ImageUploader /> */}
       </section>
     </main>
   );
