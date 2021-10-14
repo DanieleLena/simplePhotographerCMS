@@ -1,10 +1,10 @@
 {
-  "name": "simplePhotographerCMS",
+  "name": "simple-photographer-cms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -16,6 +16,9 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "14.15.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
