@@ -16,6 +16,8 @@ const authenticateUser = require("./middleware/authentication");
 const multerMiddleware = require('./middleware/multer');
 const path = require("path");
 
+const port = process.env.PORT || 5000;
+
 // file upload
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -35,14 +37,13 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/get",getRouter);
 app.use("/api/v1/upload", authenticateUser,multerMiddleware, uploadRouter);
 
-app.use(notFoundMiddleware);
+// app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5000;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    // await connectDB(process.env.MONGO_URI);
     app.listen(port, console.log(`Server is listening on port ${port}`));
   } catch (error) {
     console.log(error);
@@ -54,6 +55,7 @@ if (process.env.NODE_ENV === "production") {
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    
   });
 }
 
