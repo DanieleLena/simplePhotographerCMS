@@ -161,5 +161,10 @@ background-image: linear-gradient(315deg, #f0ecfc 0%,  rgb(85, 162, 214) 74%);
     color: $white;
   }
 
+}
 
+.coming-soon {
+  width: 150px;
+  background-color: gray !important;
+  cursor:default;
 }
