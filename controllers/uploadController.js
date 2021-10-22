@@ -15,13 +15,6 @@ const uploadLandingPage = async (req, res) => {
     position = Number(position);
   }
 
-  // if (Number.isNaN(position)) {
-  //   fs.unlinkSync(req.file.path);
-  //   throw new BadRequestError(
-  //     `The position field in ${name} must be a Number, please press on "Cancel" and try again`
-  //   );
-  // }
-
   //ADD to cloudinary
   const result = await cloudinary.uploader.upload(req.file.path, {
     use_filename: true,
